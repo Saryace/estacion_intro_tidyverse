@@ -34,11 +34,11 @@ sociales), el curso se enfoca en:
 
 | Tables        | Contenidos         | Fecha   |
 | ------------- |:-------------:| -----:|
-| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>item1</li><li>item2</li></ul><ul><li>item1</li><li>item2</li></ul> | TBA |
-| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>item1</li><li>item2</li></ul><ul><li>item1</li><li>item2</li></ul> | TBA |
-| Paquetes dplyr y tidyr para limpieza de datos | <ul><li>item1</li><li>item2</li></ul><ul><li>item1</li><li>item2</li></ul>      | TBA |
-| Paquete ggplot2 para visualización de datos | <ul><li>item1</li><li>item2</li></ul><ul><li>item1</li><li>item2</li></ul>     | TBA |
-| Paquete purrr para bucles| <ul><li>item1</li><li>item2</li></ul><ul><li>item1</li><li>item2</li></ul> | TBA |
+| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul> | TBA |
+| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul> | TBA |
+| Paquetes dplyr y tidyr para limpieza de datos | <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul>      | TBA |
+| Paquete ggplot2 para visualización de datos | <<ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul>     | TBA |
+| Paquete purrr para bucles| <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul> | TBA | Paquete purrr para bucles| <ul><li>item1</li><li>item2</li></ul><ul><li>item1</li><li>item2</li></ul> | TBA |
 
 ## Responsable
 
