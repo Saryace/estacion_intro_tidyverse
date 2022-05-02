@@ -31,12 +31,15 @@ sociales), el curso se enfoca en:
 -   Clases de 2 horas de duración
 
 ## Programación
-| Tables        | Are           | Cool  |
+
+| Sesión        | Contenidos         | Fecha   |
 | ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-| <ul><li>item1</li><li>item2</li></ul>| See the list | from the first column|
+| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>item1</li><li>item2</li></ul> | TBA |
+| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>item1</li><li>item2</li></ul> | TBA |
+| zebra stripes | <ul><li>item1</li><li>item2</li></ul>      | TBA |
+| zebra stripes | <ul><li>item1</li><li>item2</li></ul>     | TBA |
+| <ul><li>item1</li><li>item2</li></ul>| <ul><li>item1</li><li>item2</li></ul> | TBA |
+
 ## Responsable
 
 **Sara Acevedo** Estudiante Doctorado Ciencias de la Ingeniería UC. MSc.
