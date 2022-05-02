@@ -31,15 +31,13 @@ sociales), el curso se enfoca en:
 -   Clases de 2 horas de duración
 
 ## Programación
-
-| Tables        | Contenidos         | Fecha   |
+| Sesión        | Contenidos         | Fecha   |
 | ------------- |:-------------:| -----:|
-| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul> | TBA |
-| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul> | TBA |
+| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>Importancia de la reproducibilidad de los datos e información</li><li>Aprender buenas práctica</li><li>Familiarizarse con el IDE RStudio</li><li>Conocer operadores y funciones (1/2)</li></ul> | TBA |
+| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>Conocer operadores y funciones (2/2)</li><li>item2</li><li>item1</li><li>item2</li></ul> | TBA |
 | Paquetes dplyr y tidyr para limpieza de datos | <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul>      | TBA |
 | Paquete ggplot2 para visualización de datos | <<ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul>     | TBA |
-| Paquete purrr para bucles| <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul> | TBA | Paquete purrr para bucles| <ul><li>item1</li><li>item2</li></ul><ul><li>item1</li><li>item2</li></ul> | TBA |
-
+| Paquete purrr para bucles| <ul><li>item1</li><li>item2</li><li>item1</li><li>item2</li></ul> | TBA |
 ## Responsable
 
 **Sara Acevedo** Estudiante Doctorado Ciencias de la Ingeniería UC. MSc.
