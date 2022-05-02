@@ -9,8 +9,6 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<img src="imagenes/EstLastarria_Horiz_Enviar-01.png" width="200"/>
-
 #### Sara Acevedo, 2022
 
 #### Estación Lastarria
