@@ -1,0 +1,58 @@
+---
+title: "01_sesion_tipos_datos"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## los tipos más comunes de datos que podemos encontrar son: 
+
+### logical vectors contiene TRUE o FALSE
+
+```{r setup, include=FALSE}
+
+mi_nombre <- "Carolina"
+
+mi_nombre == "Carolina"
+
+```
+
+### integer vectors contiene enteros
+```{r}
+edades_hijos <- c(4,5,12)
+
+str(edades_hijos)
+```
+double vectors contiene números reales
+
+```{r}
+peso_hijos <- c(12.5,21.3,31.5)
+
+str(peso_hijos)
+```
+character vector contiene strings ("")
+
+```{r}
+peso_hijos <- c(12.5,21.3,31.5)
+
+str(peso_hijos)
+```
+
+factors , representan variables categóricas determinadas (llamadas levels)
+
+```{r}
+hobbies_hijos <- c("artes","deportes","artes")
+
+hobbies_hijos <- as.factor(hobbies_hijos)
+
+str(hobbies_hijos)
+
+```
+revisamos "levels"
+
+```{r}
+levels(hobbies_hijos)
+
+```

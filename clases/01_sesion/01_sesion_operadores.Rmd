@@ -1,0 +1,25 @@
+---
+title: "Operadores"
+output: html_notebook
+---
+Operadores aritméticos
+
+```{r}
+1 + 1
+```
+
+Las operaciones ocurren para cada elemento: 
+```{r}
+cm_observados <- c(8,12,54,77,89)
+```
+si los quiero pasar a metros, puedo operar cada uno directamente
+
+```{r}
+cm_observados / 100
+```
+puedo operar y asignar un nuevo objeto
+
+```{r}
+metros_observados <- cm_observados / 100
+```
+
