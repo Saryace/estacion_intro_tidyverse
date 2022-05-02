@@ -31,34 +31,12 @@ sociales), el curso se enfoca en:
 -   Clases de 2 horas de duración
 
 ## Programación
-
-+-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
-\| Sesión \| Contenidos \| Fecha \|
-+=======================================================================+===================================================================+=======+
-\| Comprender los elementos básicos del lenguaje de programación R (1/2)
-\| - Importancia de la reproducibilidad de los datos e información \|
-TBA \| \| \| \| \| \| \| - Aprender buenas prácticas \| \| \| \| \| \|
-\| \| - Familiarizarse con el IDE RStudio \| \| \| \| \| \| \| \| -
-Conocer operadores y funciones (1/2) \| \|
-+-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
-\| Comprender los elementos básicos del lenguaje de programación R (2/2)
-\| - Conocer operadores y funciones (2/2) \| TBA \| \| \| \| \| \| \| -
-Tipos de datos \| \| \| \| \| \| \| \| - Importar/exportar datos desde
-.xlsx y .csv \| \| \| \| \| \| \| \| - Test estadísticos básicos \| \|
-+-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
-\| Paquetes dplyr y tidyr para limpieza de datos \| - Funciones básicas
-\| TBA \| \| \| \| \| \| \| - Formatos de datos \| \| \| \| \| \| \| \|
-- Ejercicios data wrangling \| \|
-+-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
-\| Paquete ggplot2 para visualización de datos \| - Componentes ggplot2
-\| TBA \| \| \| \| \| \| \| - geom básicos \| \| \| \| \| \| \| \| -
-Estilos y colores \| \| \| \| \| \| \| \| - Ejercicios dataviz \| \|
-+-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
-\| Paquete purrr para bucles \| - Operaciones en bucles \| TBA \| \| \|
-\| \| \| \| - Iteraciones de funciones \| \| \| \| \| \| \| \| -
-Ejercicios loops \| \|
-+-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
-
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+| <ul><li>item1</li><li>item2</li></ul>| See the list | from the first column|
 ## Responsable
 
 **Sara Acevedo** Estudiante Doctorado Ciencias de la Ingeniería UC. MSc.
