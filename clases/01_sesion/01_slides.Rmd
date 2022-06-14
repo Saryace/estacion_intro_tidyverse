@@ -761,5 +761,3 @@ beep(2)
 class: center middle inverse
 
 ## Nos vemos la próxima semana 🐸
-
----
