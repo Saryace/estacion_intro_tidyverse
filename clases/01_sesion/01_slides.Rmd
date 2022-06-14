@@ -688,10 +688,10 @@ uno_al_diez == one_to_ten
 
 |  Operador | Operación  |
 |---|---|
-|   x \| y | x Ó y es verdadero  |
-|   `x & y` | x Y y son verdaderos   |
-|   `!x` | x no es verdadero (negación) |
-|   `isTRUE(x)` | x es verdadero (afirmación) |
+| x &#x7c; y | x Ó y es verdadero  |
+|   x & y | x Y y son verdaderos   |
+|   !x | x no es verdadero (negación) |
+|   isTRUE(x) | x es verdadero (afirmación) |
 
 ```{r, eval = FALSE}
 
@@ -711,12 +711,12 @@ class: center inverse
 library(guaguas)
 library(tidyverse)
 guaguas %>% 
-  filter(nombre == "Salvador" | nombre == "Augusto") %>% 
-  filter(anio >= 1960 & anio <= 1979) %>% 
+  filter(nombre == "Brian" | nombre == "Kevin") %>% 
   ggplot(aes(anio, n, color = fct_reorder2(nombre, n, anio))) + 
   geom_line() +
-  labs(x = "año", y = "total inscripciones", color = "nombre", 
-       title = "Inscripciones de 'Salvador' y 'Augusto' entre 1960 - 1979") 
+  labs(x = "año", y = "total inscripciones", color = "nombre",
+       title = "El efecto 'Backstreet Boys'") +
+  theme_bw()
 ```
 
 .footnote[
@@ -734,12 +734,12 @@ class: center inverse
 library(guaguas)
 library(tidyverse)
 guaguas %>% 
-  filter(nombre == "Salvador" | nombre == "Augusto") %>% 
-  filter(anio >= 1960 & anio <= 1979) %>% 
+  filter(nombre == "Brian" | nombre == "Kevin") %>% 
   ggplot(aes(anio, n, color = fct_reorder2(nombre, n, anio))) + 
   geom_line() +
-  labs(x = "año", y = "total inscripciones", color = "nombre", 
-       title = "Inscripciones de 'Salvador' y 'Augusto' entre 1960 - 1979") 
+  labs(x = "año", y = "total inscripciones", color = "nombre",
+       title = "El efecto 'Backstreet Boys'") +
+  theme_bw()
 ```
 
 ---
@@ -757,6 +757,7 @@ beep(2)
 ```
 
 ---
+
 class: center middle inverse
 
 ## Nos vemos la próxima semana 🐸
