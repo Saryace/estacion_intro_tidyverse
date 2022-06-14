@@ -35,7 +35,7 @@ class: center, middle
 
 
 
-<div class="countdown" id="timer_62a91e4f" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a91f29" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -88,7 +88,7 @@ class: center middle
 
 @AndyWGettysburg: Porqué hacer algo en 4 minutos en Excel si puedes hacerlo en 4 horas en R?
 
-<div class="countdown" id="timer_62a91e06" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a91cc9" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -516,7 +516,7 @@ class: center middle
 
 #descanzemos de la pantalla por 10 minutos 🐸
 
-<div class="countdown" id="timer_62a91ec0" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a91fde" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -806,12 +806,12 @@ class: center inverse
 library(guaguas)
 library(tidyverse)
 guaguas %&gt;% 
-  filter(nombre == "Salvador" | nombre == "Augusto") %&gt;% 
-  filter(anio &gt;= 1960 &amp; anio &lt;= 1979) %&gt;% 
+  filter(nombre == "Brian" | nombre == "Kevin") %&gt;% 
   ggplot(aes(anio, n, color = fct_reorder2(nombre, n, anio))) + 
   geom_line() +
-  labs(x = "año", y = "total inscripciones", color = "nombre", 
-       title = "Inscripciones de 'Salvador' y 'Augusto' entre 1960 - 1979") 
+  labs(x = "año", y = "total inscripciones", color = "nombre",
+       title = "El efecto 'Backstreet Boys'") +
+  theme_bw()
 ```
 
 .footnote[
