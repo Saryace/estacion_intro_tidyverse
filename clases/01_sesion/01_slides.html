@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>introdución a tidyverse</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sara Acevedo" />
+    <script src="01_slides_files/header-attrs-2.13/header-attrs.js"></script>
+    <link href="01_slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="01_slides_files/panelset-0.2.6/panelset.js"></script>
+    <script src="01_slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="01_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="01_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="01_slides_files/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="01_slides_files/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# introdución a tidyverse
+]
+.subtitle[
+## clase 01: conceptos básicos
+]
+.author[
+### Sara Acevedo
+]
+
+---
+
+class: center, middle  
+
+
+
+<div class="countdown" id="timer_62a9167f" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+# bienvenidos!!
+.center[Mi nombre es Sara Acevedo, y el tuyo?]
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; saryace.github.io](https://biofisica.ing.puc.cl)
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; @saryace](https://twitter.com/soilbiophysics1)
+
+
+---
+
+.center[# bienvenidos 🐸]
+
+
+```r
+saludo_curso &lt;- function(nombre) {
+  paste("hola", nombre)
+}
+
+nombres_clase &lt;- c("Felipe",  "Pedro",  "Victo" , "Ximena",
+                    "Olivier",  "Valentina")
+for (estudiantes in nombres_clase) {
+  print(saludo_curso(estudiantes))
+}
+```
+
+```
+## [1] "hola Felipe"
+## [1] "hola Pedro"
+## [1] "hola Victo"
+## [1] "hola Ximena"
+## [1] "hola Olivier"
+## [1] "hola Valentina"
+```
+---
+
+## Qué veremos hoy?
+
+* Importancia de la reproducibilidad de los datos e información
+* Buenas prácticas
+* Qué es tidyverse
+* Familiarizarse con el IDE RStudio
+* Conocer operadores y funciones 
+
+---
+
+class: center middle
+.center[![](01_figures/why_r_twitt.png)]
+
+@AndyWGettysburg: Porqué hacer algo en 4 minutos en Excel si puedes hacerlo en 4 horas en R?
+
+<div class="countdown" id="timer_62a9191b" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: center middle inverse
+
+Un análisis de datos es *reproducible* si toda la información (datos, archivos, etc.) necesaria está disponible para que otra persona pueda rehacer su análisis completo. 
+
+.footnote[
+[1] Capítulo 5 de [R programming for research](https://geanders.github.io/RProgrammingForResearch/reproducible-research-1.html)
+]
+
+---
+
+## Análisis exploratorio de datos (AED)
+
+.center[![](01_figures/eda.png)]
+
+.footnote[
+[1] [Figura R4DS](https://r4ds.had.co.nz/explore-intro.html)
+
+[2] [Capítulo en español R4DS](https://es.r4ds.hadley.nz/introducci%C3%B3n.html) 
+]
+
+---
+
+## Esto se cumple si están disponibles:
+
+* Los datos (en bruto)
+
+--
+
+* El código para limpiar los datos desde datos en bruto 
+
+--
+
+* El código y software para el análisis 
+
+.footnote[
+[1] Capítulo 5 de [R programming for research](https://geanders.github.io/RProgrammingForResearch/reproducible-research-1.html)
+]
+
+---
+## Pasos necesarios para asegurar reproducibilidad
+
+* Todos los datos brutos deben guardarse en el directorio del proyecto 
+* Se debe detallar la fuente de todos estos datos
+* Deben incluirse scripts con todo el código utilizado para limpiar y crear las figuras y tablas
+* Debe incluir detalles sobre las versiones del software utilizado (para R, esto incluye la versión de R así como las versiones de todos los paquetes utilizados)
+* En la medida de lo posible, no debe haber pasos "a mano"
+
+.footnote[
+[1] Capítulo 5 de [R programming for research](https://geanders.github.io/RProgrammingForResearch/reproducible-research-1.html)
+]
+
+---
+
+class: center middle inverse
+.right[usando R + tidyverse aprenderemos herramientas para ciencia de datos reproducible]
+
+---
+
+## Buenas prácticas (algunas importantes)
+
+* Nombrar **cosas** apropiadamente
+* **DRY** — Don’t Repeat Yourself
+* Comentar **infinitamente**
+* Usar **proyectos** para organizar datos y scripts
+* Ver [&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; otras acá](https://waterdata.usgs.gov/blog/intro-best-practices/) 
+
+---
+
+class: middle, inverse
+
+.center[##Buena práctica: nombrar **cosas** apropiadamente]
+
+# Tres principios 
+
+--
+
+### Leíbles para el computador 💻
+
+--
+
+### Leíbles para los humanos 👫
+
+--
+
+### Pueden ser ordenados sin problemas 🗂️
+
+---
+
+.center[## Cual prefieres?]
+
+.pull-left[
+- miresu.docx
+
+- presupuestoFinal.pdf
+
+- figura 3barra.png
+]
+
+.pull-right[
+- 2022-03-03_resumen-congreso-internacional.docx
+
+- 2022-03-03_semestral_presupuesto-auditado.pdf
+
+- 03_figura-barras-presupuesto.png
+]
+
+.footnote[
+[1] [Naming things - Jenny Brian](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf)
+]
+
+---
+
+.center[## Cual prefieres?]
+
+
+```r
+d &lt;- 100
+t &lt;- 50
+
+v = d / t
+
+v
+```
+
+```
+## [1] 2
+```
+
+
+```r
+distancia &lt;- 100 #metros
+tiempo &lt;- 50 #segundos
+
+velocidad = distancia / tiempo
+
+velocidad # en metros/segundo
+```
+
+```
+## [1] 2
+```
+
+---
+class: middle, inverse
+
+### Leíbles para el computador 💻
+
+--
+
+evitar los espacios, la puntuación, los caracteres acentuados, la distinción entre mayúsculas y minúsculas
+
+--
+
+uso deliberado de delimitadores (_ y -)
+
+
+---
+
+class: middle, inverse
+
+### Leíbles para los humanos 👫
+
+--
+
+el nombre contiene información sobre el contenido
+
+--
+
+conecta con el concepto de slug de [URL semánticas](https://es.wikipedia.org/wiki/URL_sem%C3%A1ntica)
+
+---
+
+class: middle, inverse
+
+### Pueden ser ordenados sin problemas 🗂️
+
+--
+
+poner algo numérico primero
+
+--
+
+utilizar la norma ISO 8601 para las fechas (YYYY-MM-DD)
+
+--
+
+rellenar otros números con ceros a la izquierda
+---
+
+.center[## Ejemplo 1]
+
+.pull-left[
+- Tengo varios archivos de encuestas
+
+- Diferentes fechas
+]
+
+.pull-right[
+- 2022-03-03_encuesta_nacional_tipo-A.csv
+
+- 2022-03-03_encuesta_nacional_tipo-B.csv
+
+- 2022-06-03_encuesta_regional_tipo-A.csv
+
+]
+
+.footnote[
+[1] [Naming things - Jenny Brian](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf)
+]
+
+---
+.center[## Ejemplo 1]
+
+.pull-left[
+- Tengo varios archivos de encuestas
+
+- Diferentes fechas
+]
+
+.pull-right[
+- **2022-03-03** _encuesta-nacional_tipo-A.csv
+
+- 2022-03-03_ **encuesta-nacional** _tipo-B.csv
+
+- 2022-06-03_encuesta_regional_ **tipo-A** .csv
+]
+
+.footnote[
+[1] [Naming things - Jenny Brian](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf)
+]
+
+---
+
+.center[## Ejemplo 2]
+
+.pull-left[
+- Tengo varios scripts con mi análisis reproducible
+
+- Tengo mis datos brutos
+]
+
+.pull-right[
+- scripts/01_cargar-librerias.R
+
+- scripts/02_cargar-datos-brutos.R
+
+- scripts/03_limpiar-datos-brutos.R
+
+- datos/2022-03-03_encuesta-nacional_tipo-A_bruto.csv
+
+]
+
+.footnote[
+[1] [Naming things - Jenny Brian](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf)
+]
+
+---
+
+class: middle, inverse
+
+.center[##Buena práctica: DRY Don’t Repeat Yourself]
+
+---
+
+
+```r
+paste("hola","Felipe")
+```
+
+```
+## [1] "hola Felipe"
+```
+
+```r
+paste("hola","Pedro")
+```
+
+```
+## [1] "hola Pedro"
+```
+
+```r
+paste("hola","Victo")
+```
+
+```
+## [1] "hola Victo"
+```
+
+```r
+paste("hola","Ximena")
+```
+
+```
+## [1] "hola Ximena"
+```
+
+```r
+paste("hola","Olivier")
+```
+
+```
+## [1] "hola Olivier"
+```
+
+```r
+paste("hola","Valentina")
+```
+
+```
+## [1] "hola Valentina"
+```
+---
+
+
+```r
+saludo_curso &lt;- function(nombre) {
+  paste("hola", nombre)
+}
+
+nombres_clase &lt;- c("Felipe",  "Pedro",  "Victo" , "Ximena",
+                    "Olivier",  "Valentina")
+for (estudiantes in nombres_clase) {
+  print(saludo_curso(estudiantes))
+}
+```
+
+```
+## [1] "hola Felipe"
+## [1] "hola Pedro"
+## [1] "hola Victo"
+## [1] "hola Ximena"
+## [1] "hola Olivier"
+## [1] "hola Valentina"
+```
+
+&gt; Qué es mejor con 50 alumnos?
+
+---
+
+class: middle, inverse
+
+.center[##Buena práctica:  comentar infinitamente]
+
+---
+
+# Comentarios
+En RStudio, el shortcut es Ctrl + Shift + C (Command + Shift + C en macOS) para comentar
+
+```r
+library(ggkeyboard)
+ggkeyboard() %&gt;%
+  highlight_keys(c("Ctrl Left",
+                   "Shift Left",
+                   "C"))
+```
+
+&lt;img src="01_slides_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+---
+# Comentarios
+En RStudio, el shortcut para breaks es Ctrl + Shift + R (Command + Shift + R en macOS) 
+
+```r
+# libreria ----------------------------------------------------------------
+library(ggkeyboard)
+
+# codigo teclado ----------------------------------------------------------
+ggkeyboard() %&gt;%
+  highlight_keys(c("Ctrl Left",
+                   "Shift Left",
+                   "R"))
+```
+
+&lt;img src="01_slides_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+```r
+# libreria ----------------------------------------------------------------
+library(ggkeyboard) #libreria: https://github.com/sharlagelfand/ggkeyboard
+# codigo teclado ----------------------------------------------------------
+ggkeyboard() %&gt;% # teclado por defecto
+  highlight_keys(c("Ctrl Left",
+                   "Shift Left",
+                   "C")) #funcion para destacar teclas
+```
+
+&lt;img src="01_slides_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+class: middle, inverse
+
+.center[##Buena práctica: Usar proyectos para organizar datos y scripts]
+
+---
+class: left inverse
+background-image: url("01_figures/01_rproject.png")
+background-size: contain
+---
+class: left inverse
+background-image: url("01_figures/02_rproject.png")
+background-size: contain
+---
+class: left inverse
+background-image: url("01_figures/03_rproject.png")
+background-size: contain
+---
+class: left inverse
+background-image: url("01_figures/04_rproject.png")
+background-size: contain
+---
+
+class: bottom center inverse
+background-image: url("01_figures/tidyverse.png")
+background-size: cover
+# qué es tidyverse?
+
+---
+
+class: center middle 
+
+#descanzemos de la pantalla por 10 minutos 🐸
+
+<div class="countdown" id="timer_62a91809" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: bottom center inverse
+background-image: url("01_figures/tidyverse.png")
+background-size: cover
+# qué es tidyverse?
+
+---
+
+## Tidyverse: 
+
+* Megapaquete que contiene paquetes para el análisis datos
+* Construidos con los mismos principios
+
+## La filosofía del paquete
+
+* Reusar estructuras de datos
+* Utilizar el operador `pipe %&gt;% ` para combinar funciones
+* Pensado para "humanos"
+
+---
+
+# `pipe %&gt;% ` shortcut 
+&lt;img src="01_slides_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+.center[### Ejemplo: un pedazo de torta a partir de ingredientes]
+
+--
+
+- Ingredientes (harina, azúcar, etc.) 🛒
+
+--
+
+- Mezclar en un bowl ingredientes 🥣
+
+--
+
+- Hornear la mezcla ⏲️
+
+--
+
+- Decorar el bizcocho 🥧
+
+--
+
+- Cortar 🍰
+
+.footnote[
+[1] Idea de Arthur Welles [@ArthurWelle](https://twitter.com/ArthurWelle)
+]
+---
+.center[### Ejemplo: un pedazo de torta a partir de ingredientes]
+
+Estilo no-tidyverse
+
+Al igual que con las matemáticas, el orden en que se evalúan las funciones se mueve desde el conjunto interior de paréntesis hasta el exterior 
+
+
+```r
+torta &lt;- decorar(hornear(mezclar(ingredientes)))
+
+pedazo_torta &lt;- cortar(torta)
+```
+
+Estilo tidyverse
+
+```r
+pedazo_torta &lt;-
+  ingredientes %&gt;%
+  mezclar() %&gt;%
+  hornear() %&gt;%
+  decorar() %&gt;%
+  cortar()
+```
+.footnote[
+[1] Idea de Arthur Welles [@ArthurWelle](https://twitter.com/ArthurWelle)
+]
+
+---
+class: center middle inverse
+.right[miremos RStudio y revisemos sus componentes 💻]
+
+---
+
+class: middle right inverse
+background-image: url("01_figures/rstudio_screenshot.png")
+background-size: contain
+- ### [Environment]
+
+--
+
+- ### Acá están los objetos e historial
+
+---
+
+class: bottom right inverse
+background-image: url("01_figures/rstudio_screenshot.png")
+background-size: contain
+
+- ### [Files/Plots/Packages/Help/Viewer]
+
+--
+
+- ### Acceso al directorio, archivos, ayuda, etc.
+
+---
+
+class: bottom left inverse
+background-image: url("01_figures/rstudio_screenshot.png")
+background-size: contain
+
+- ### Consola: 
+
+--
+
+- ### donde el código desde source se evalua
+
+--
+
+- ### Util para operaciones rápidas
+
+---
+
+class: left inverse
+background-image: url("01_figures/rstudio_screenshot.png")
+background-size: contain
+
+- ### Source: 
+
+--
+
+- ### Donde se escriben los scripts
+
+--
+
+- ### Se ejecuta con ´run´
+
+---
+
+class: center middle inverse
+
+.center[#funciones y operadores]
+
+---
+
+# funciones
+
+Una ´function call´ forma una expresión en R, y la salida (output) será el resultado de ejecutar ´print()´ o ´View()´ al objeto al que da salida
+
+ejemplo tipo de funciones en tidyverse
+
+```r
+function_name(formal_argument_1 = named_argument_1, 
+              formal_argument_2 = named_argument_2,
+              [etc.])
+```
+
+ejemplo: 
+
+```r
+uno_al_diez &lt;- 1:10 # operador : significa desde x a y número entero
+
+uno_al_diez
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+
+```r
+glimpse(uno_al_diez) # glimpse resume los datos, e indica el tipo
+```
+
+```
+##  int [1:10] 1 2 3 4 5 6 7 8 9 10
+```
+---
+
+# operadores
+Los operadores son símbolos que le indican a R que debe realizar una tarea. Combinando datos + operadores + funciones R hace su trabajo. Los hay:
+
+* Asignación
+* Aritméticos
+* Relacionales
+* Lógicos
+
+
+.footnote[
+[1] Capítulo 5 Operadores [R para principiantes](https://bookdown.org/jboscomendoza/r-principiantes4/operadores.html)
+]
+
+---
+
+# Asignación
+
+|  Operador | Operación  |
+|---|---|
+|   `&lt;-` | Asigna un valor a una variable  |
+|   `=` | Asigna un valor a una variable  |
+
+
+```r
+uno_al_diez &lt;- 1:10 
+
+one_to_ten = 1:10
+```
+
+---
+
+## Aritméticos
+
+|  Operador | Operación  |
+|---|---|
+|   `+` | Suma    |
+|   `-` | Resta   |
+|   `*` | Multiplicación    |
+|   `/` | División    |
+|   `^` | Potencia    |
+|  `%%` | División entera |
+
+
+```r
+uno_al_diez * 10
+```
+
+```
+##  [1]  10  20  30  40  50  60  70  80  90 100
+```
+
+&gt; abre RStudio y prueba una operación matemática en la consola
+
+---
+
+## Relacionales
+
+|  Operador | Operación  |
+|---|---|
+|   `&lt;` | Menor que  |
+|   `&lt;=` | Menor o igual que   |
+|   `&gt;` | Mayor o igual que |
+|   `&gt;=` | División    |
+|   `==` | Exactamente igual que |
+|  `!=` | No es igual que |
+
+
+```r
+uno_al_diez == one_to_ten
+```
+
+```
+##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+```
+
+&gt; abre RStudio y prueba una operación relacional en la consola
+
+---
+
+# Lógicos
+
+|  Operador | Operación  |
+|---|---|
+|   x \| y | x Ó y es verdadero  |
+|   `x &amp; y` | x Y y son verdaderos   |
+|   `!x` | x no es verdadero (negación) |
+|   `isTRUE(x)` | x es verdadero (afirmación) |
+
+
+```r
+ingredientes %&gt;% 
+  mezclar(harina &amp; ázucar)
+```
+
+&gt; estos operadores los usaremos un poco más adelante
+
+---
+
+class: center inverse
+## Qué podemos hacer con tidyverse?
+
+
+```r
+library(guaguas)
+library(tidyverse)
+guaguas %&gt;% 
+  filter(nombre == "Salvador" | nombre == "Augusto") %&gt;% 
+  filter(anio &gt;= 1960 &amp; anio &lt;= 1979) %&gt;% 
+  ggplot(aes(anio, n, color = fct_reorder2(nombre, n, anio))) + 
+  geom_line() +
+  labs(x = "año", y = "total inscripciones", color = "nombre", 
+       title = "Inscripciones de 'Salvador' y 'Augusto' entre 1960 - 1979") 
+```
+
+.footnote[
+[1] [Paquete R guaguas por Riva Quiroga](https://github.com/rivaquiroga/guaguas)
+[2] Código adaptado de repositorio
+]
+
+---
+
+class: center inverse
+## Qué podemos hacer con tidyverse?
+
+![](01_slides_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
+---
+
+# Para terminar por hoy, algo divertido
+
+instala el siguiente paquete
+
+```r
+install.packages("beepr")
+```
+luego de instalado, corre el siguiente código en la consola
+
+```r
+library(beepr)
+beep(2)
+```
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

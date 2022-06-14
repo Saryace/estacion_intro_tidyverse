@@ -3,8 +3,13 @@ title: "01_sesion_tipos_datos"
 output: html_document
 ---
 
+## class() recibe como argumento un dato o vector y devuelve el nombre del tipo al que pertenece
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+class(5)
+
+class("un nombre cualquiera")
+
 ```
 
 ## los tipos más comunes de datos que podemos encontrar son: 
