@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>introdución a tidyverse</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sara Acevedo" />
+    <script src="02_slides_files/header-attrs-2.13/header-attrs.js"></script>
+    <link href="02_slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="02_slides_files/panelset-0.2.6/panelset.js"></script>
+    <script src="02_slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="02_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="02_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="02_slides_files/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="02_slides_files/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# introdución a tidyverse
+]
+.subtitle[
+## clase 02: conceptos básicos + primeros análisis
+]
+.author[
+### Sara Acevedo
+]
+
+---
+
+class: center, middle  
+
+
+
+# bienvenidos!!
+.center[Segunda clase de introdución a tidyverse]
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; saryace.github.io](https://biofisica.ing.puc.cl)
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; @saryace](https://twitter.com/soilbiophysics1)
+
+---
+
+### Qué vimos la clase anterior?
+
+* Importancia de la reproducibilidad de los datos e información
+* Buenas prácticas
+
+.center[![](02_figures/why_r_twitt.png)]
+
+@AndyWGettysburg: Porqué hacer algo en 4 minutos en Excel si puedes hacerlo en 4 horas en R?
+
+---
+class: left inverse
+background-image: url("02_figures/code_last_year.jpeg")
+background-size: contain
+
+
+.footnote[
+[1] [Foto de @Jas_Hughes dueña del gatito](https://twitter.com/Jas_Hughes/status/1428442201403449350?fbclid=IwAR14COm1R2PbMKFRa12ISEpRojQ14hwsHLXI17MxukR-w8XV9b4wJkPxaWY)
+]
+
+
+---
+
+### Análisis exploratorio de datos (AED)
+
+.center[![](02_figures/eda.png)]
+
+* Qué es tidyverse
+* Familiarizarse con el IDE RStudio
+* Conocer operadores y funciones 
+
+.footnote[
+[1] [Figura R4DS](https://r4ds.had.co.nz/explore-intro.html)
+
+[2] [Capítulo en español R4DS](https://es.r4ds.hadley.nz/introducci%C3%B3n.html) 
+]
+
+---
+
+### Preguntas de la clase anterior
+
+* Otros megapaquetes en R?
+  * Tidymodels: una colección de paquetes para la modelización y el aprendizaje automático utilizando los principios de tidyverse
+  * RsquaredAcademy: plataforma educativa
+  * Análisis de pedigri : patrón de herencia de un rasgo particular a lo largo de una familia
+
+.footnote[
+[1] [tidymodels](https://www.tidymodels.org/)
+[2] [RsquaredAcademy](https://www.rsquaredacademy.com/)
+[3] [The ped suite](https://magnusdv.github.io/pedsuite/)
+]
+
+---
+
+### Preguntas de la clase anterior
+
+* Asignación
+  * Asignar datos a una variable
+  * Después de realizar la operación de asignación, podemos usar el nombre de la variable para realizar operaciones con ella
+  * Si asignamos un valor a una variable a la que ya habíamos asignado datos, nuestra variable conserva el valor más reciente
+  * Asignar permite “guardar” el resultado de operaciones en la consola
+  
+.footnote[
+[1] Capítulo 5.4 [R para principiantes](https://bookdown.org/jboscomendoza/r-principiantes4/operadores-de-asignacion.html)
+]
+
+---
+
+### Preguntas de la clase anterior: asignación
+
+
+```r
+distancia &lt;- 100 #metros
+tiempo &lt;- 50 #segundos
+
+velocidad = distancia / tiempo
+
+velocidad # en metros/segundo
+```
+
+```
+## [1] 2
+```
+
+```r
+tiempo &lt;- 25 #segundos
+
+velocidad # en metros/segundo
+```
+
+```
+## [1] 2
+```
+
+```r
+velocidad = distancia / tiempo
+
+velocidad # en metros/segundo
+```
+
+```
+## [1] 4
+```
+
+---
+
+class: center middle inverse
+.right[Clase de hoy: importar datos + primeras funciones + estadisticas básicas]
+
+---
+
+class: left inverse
+background-image: url("02_figures/plot_tidytuesday.png")
+background-size: contain
+
+.footnote[
+[1] Rebecca Stevick [20210420_NetflixTitles](https://github.com/rjstevick/TidyTuesday/tree/master/2021/20210420_NetflixTitles)
+]
+
+---
+
+### Objetivos clase hoy
+
+* Aprender a importar datos
+* Entender los datos (tipos y estructuras)
+* Revisar si los datos estan limpios
+* Aplicar funciones para obtener información (estadísticas básicas)
+
+---
+
+### Importar datos 
+
+.pull-left[
+El objetivo de readr es proporcionar una forma rápida y amigable de leer datos *rectangulares* de archivos delimitados, como valores separados por comas (CSV) y valores separados por tabulaciones (TSV).
+]
+
+.pull-right[
+![readr](02_figures/readr.png)
+]
+
+.footnote[
+[1] Documentacion [readr](https://readr.tidyverse.org/)
+]
+
+---
+
+.pull-left[
+- *readxl* facilita la extracción de datos de Excel y su uso en R.
+- *googlesheets4* proporciona una interfaz de R para Google Sheets a través de Sheets API
+- NOTA: hay que cargar ambos explícitamente, porque no es cargado a través de library(tidyverse)
+]
+
+.pull-right[
+![readxl](02_figures/readxl.png)
+![readr](02_figures/googlesheets4.png)
+
+]
+
+.footnote[
+[1] Documentacion [readr](https://readr.tidyverse.org/)
+]
+
+---
+
+class: center middle inverse
+
+.center[### Revisemos la documentación de readr
+[readr](https://readr.tidyverse.org/)]
+
+---
+
+### Datos tidy rectangulares (ordenados)
+
+* Cada variable forma su propia columna
+* Cada observación forma una fila
+* Y cada celda es un único valor
+
+![readr](02_figures/tidy_data.png)
+.footnote[
+[1] R4DS [tidy data](https://r4ds.had.co.nz/tidy-data.html)
+]
+
+---
+
+class: center middle inverse
+
+.center[### tipos y estructuras de datos]
+
+---
+
+### Clases de datos en R (atomic)
+
+* logical (e.g., `TRUE`, `FALSE`)
+* integer (e.g, `2L`, `as.integer(3)`)
+* numeric (real, double) (e.g, `2`, `2.0`, `pi`)
+* complex (e.g, 1 + 0i, 1 + 4i)
+* character (e.g, `"a"`, `"swc"`)
+
+
+```r
+uno_al_diez &lt;- 1:10
+
+uno_al_diez
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+```r
+typeof(uno_al_diez)
+```
+
+```
+## [1] "integer"
+```
+
+---
+
+### Clases de datos en R (atomic)
+
+* logical (e.g., `TRUE`, `FALSE`)
+* integer (e.g, `2L`, `3`)
+* numeric (real, double) (e.g, `2`, `2.0`, `pi`)
+* complex (e.g, 1 + 0i, 1 + 4i)
+* character (e.g, `"a"`, `"swc"`)
+
+
+```r
+uno_al_diez_multiplicado &lt;- uno_al_diez * 0.75
+
+uno_al_diez_multiplicado
+```
+
+```
+##  [1] 0.75 1.50 2.25 3.00 3.75 4.50 5.25 6.00 6.75 7.50
+```
+
+```r
+typeof(uno_al_diez_multiplicado)
+```
+
+```
+## [1] "double"
+```
+
+---
+
+### Clases de datos en R (atomic)
+
+* logical (e.g., `TRUE`, `FALSE`)
+* integer (e.g, `2L`, `3`)
+* numeric (real, double) (e.g, `2`, `2.0`, `pi`)
+* complex (e.g, 1 + 0i, 1 + 4i)
+* character (e.g, `"a"`, `"swc"`)
+
+
+```r
+uno_al_diez == 1:10
+```
+
+```
+##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+```
+
+```r
+uno_al_diez_multiplicado == 1:10
+```
+
+```
+##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+```
+
+---
+
+### Clases de datos en R (atomic)
+
+* logical (e.g., `TRUE`, `FALSE`)
+* integer (e.g, `2L`, `3`)
+* numeric (real, double) (e.g, `2`, `2.0`, `pi`)
+* complex (e.g, 1 + 0i, 1 + 4i)
+* character (e.g, `"a"`, `"swc"`)
+
+
+```r
+uno_al_diez_pan &lt;- paste("quiero", uno_al_diez_multiplicado, "panes")
+
+uno_al_diez_pan
+```
+
+```
+##  [1] "quiero 0.75 panes" "quiero 1.5 panes"  "quiero 2.25 panes"
+##  [4] "quiero 3 panes"    "quiero 3.75 panes" "quiero 4.5 panes" 
+##  [7] "quiero 5.25 panes" "quiero 6 panes"    "quiero 6.75 panes"
+## [10] "quiero 7.5 panes"
+```
+
+```r
+typeof(uno_al_diez_pan)
+```
+
+```
+## [1] "character"
+```
+---
+
+
+### conversión de tipos de datos
+
+* `as.integer`, `as.character`, `as.numeric`
+
+
+```r
+uno_al_diez_multiplicado_enteros &lt;-  
+  as.integer(uno_al_diez_multiplicado)
+
+uno_al_diez_multiplicado_enteros
+```
+
+```
+##  [1] 0 1 2 3 3 4 5 6 6 7
+```
+
+```r
+typeof(uno_al_diez_multiplicado_enteros)
+```
+
+```
+## [1] "integer"
+```
+
+---
+
+### Estructuras de datos en R
+
+* *vector* un vector es una colección de uno o más datos del mismo tipo
+* list 
+* matrix
+* data frame
+* tibble (tidyverse)
+
+
+```r
+is.vector(uno_al_diez)
+```
+
+```
+## [1] TRUE
+```
+
+
+```r
+mis_perros &lt;- c("pepito", "cuchito", "cachupin") # funcion c()
+
+is.vector(mis_perros)
+```
+
+```
+## [1] TRUE
+```
+
+```r
+str(mis_perros)
+```
+
+```
+##  chr [1:3] "pepito" "cuchito" "cachupin"
+```
+---
+
+### Estructuras de datos en R
+
+* vector
+* *list* elementos que puede ser de diferente tipo o incluso de diferente clase
+* matrix
+* data frame
+* tibble (tidyverse)
+
+
+```r
+mi_mascota_fav &lt;- list("nombre" = "pepito",
+                   "tiene pulgas" = TRUE,
+                   "edad" = 9)
+
+is.vector(mi_mascota_fav) # las list son vectores también
+```
+
+```
+## [1] TRUE
+```
+
+```r
+str(mi_mascota_fav)
+```
+
+```
+## List of 3
+##  $ nombre      : chr "pepito"
+##  $ tiene pulgas: logi TRUE
+##  $ edad        : num 9
+```
+
+---
+
+### Estructuras de datos en R
+
+* vector
+* list
+* *matrix*  pueden contener datos de un sólo tipo, pero además de largo, tienen más dimensiones
+* data frame
+* tibble (tidyverse)
+
+
+```r
+matriz_ejemplo &lt;- matrix(1:12, nrow = 3, ncol = 3)
+
+matriz_ejemplo
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+```
+
+---
+
+### Estructuras de datos en R
+
+* vector
+* list
+* matrix  
+* *data frame* estructuras dos dimensiones (rectangulares) que pueden contener datos de diferentes tipos
+* *tibble (tidyverse)* es un data frame, pero modificando algunas características para hacer la vida más fácil
+
+
+```r
+mis_mascotas_df &lt;- data.frame(
+  "nombre" = c("pepito", "cuchito", "cachupin"), 
+  "pulgas" = c(TRUE, FALSE, TRUE),
+  "edad" = c(3,11,15))
+
+
+mis_mascotas_df
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2  cuchito  FALSE   11
+## 3 cachupin   TRUE   15
+```
+
+---
+
+
+```r
+mis_mascotas_df &lt;- data.frame(
+  "nombre" = c("pepito", "cuchito", "cachupin"), 
+  "pulgas" = c(TRUE, FALSE, TRUE),
+  "edad" = c(3,11,15))
+
+mis_mascotas_df
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2  cuchito  FALSE   11
+## 3 cachupin   TRUE   15
+```
+
+
+```r
+mis_mascotas_tibble &lt;- as_tibble(mis_mascotas_df)
+
+mis_mascotas_tibble
+```
+
+```
+## # A tibble: 3 × 3
+##   nombre   pulgas  edad
+##   &lt;chr&gt;    &lt;lgl&gt;  &lt;dbl&gt;
+## 1 pepito   TRUE       3
+## 2 cuchito  FALSE     11
+## 3 cachupin TRUE      15
+```
+
+---
+
+
+```r
+mis_mascotas_tibble %&gt;% .$pulgas
+```
+
+```
+## [1]  TRUE FALSE  TRUE
+```
+
+```r
+mis_mascotas_df$pulgas
+```
+
+```
+## [1]  TRUE FALSE  TRUE
+```
+
+---
+
+### Datos tidy rectangulares (ordenados)
+
+* Cada variable forma su propia columna
+* Cada observación forma una fila
+* Y cada celda es un único valor
+* *Dataframes y tibbles ordenados*
+
+![readr](02_figures/tidy_data.png)
+.footnote[
+[1] R4DS [tidy data](https://r4ds.had.co.nz/tidy-data.html)
+]
+
+---
+
+![readxl](02_figures/filter.png)![readxl](02_figures/mutate.png)![readxl](02_figures/summarise.png)![readxl](02_figures/group_by.png)
+
+---
+### Primeras funciones de data wrangling
+
+.pull-left[
+- `filter()`
+- Filtrar filas con una prueba lógica
+- Filtrar sólo a las filas que cumplen una condición específica
+
+
+```r
+mis_mascotas_df 
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2  cuchito  FALSE   11
+## 3 cachupin   TRUE   15
+```
+
+```r
+mis_mascotas_df %&gt;% 
+  filter(pulgas == TRUE)
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2 cachupin   TRUE   15
+```
+
+]
+
+.pull-right[
+![readxl](02_figures/filter.png)
+]
+---
+
+### Clase anterior: operadores
+
+
+```r
+mis_mascotas_df 
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2  cuchito  FALSE   11
+## 3 cachupin   TRUE   15
+```
+
+```r
+mis_mascotas_df %&gt;% 
+  filter(pulgas != TRUE)
+```
+
+```
+##    nombre pulgas edad
+## 1 cuchito  FALSE   11
+```
+
+```r
+mis_mascotas_df %&gt;% 
+  filter(str_ends(nombre, "ito"))
+```
+
+```
+##    nombre pulgas edad
+## 1  pepito   TRUE    3
+## 2 cuchito  FALSE   11
+```
+
+---
+### Primeras funciones de data wrangling
+
+.pull-left[
+- `mutate()`
+- crea una nueva columna
+- puede ser creada haciendo vectorizacion
+
+]
+
+.pull-right[
+![readxl](02_figures/mutate.png)
+]
+---
+
+### `mutate()`
+
+
+```r
+mis_mascotas_df 
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2  cuchito  FALSE   11
+## 3 cachupin   TRUE   15
+```
+
+```r
+# Calculo edad "humana en perros":
+# se debe multiplicar el logaritmo de
+# la edad del perro en años por 16 y luego sumar 31. 
+
+mis_mascotas_df %&gt;% 
+  mutate(edad_humano = 16 * log(edad) + 31)
+```
+
+```
+##     nombre pulgas edad edad_humano
+## 1   pepito   TRUE    3    48.57780
+## 2  cuchito  FALSE   11    69.36632
+## 3 cachupin   TRUE   15    74.32880
+```
+
+---
+
+### `mutate()`
+
+
+```r
+mis_mascotas_df 
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2  cuchito  FALSE   11
+## 3 cachupin   TRUE   15
+```
+
+```r
+# Calculo edad "humana en perros":
+# se debe multiplicar el logaritmo de
+# la edad del perro en años por 16 y luego sumar 31. 
+
+mis_mascotas_df %&gt;% 
+  mutate(edad_humano = as.integer(16 * log(edad) + 31))
+```
+
+```
+##     nombre pulgas edad edad_humano
+## 1   pepito   TRUE    3          48
+## 2  cuchito  FALSE   11          69
+## 3 cachupin   TRUE   15          74
+```
+---
+
+### Primeras funciones de data wrangling
+
+.pull-left[
+- `summarize()` 
+- Calculo estadisticas (u otras funciones) en el dataset 
+
+
+```r
+mis_mascotas_df 
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2  cuchito  FALSE   11
+## 3 cachupin   TRUE   15
+```
+
+```r
+mis_mascotas_df %&gt;% 
+  summarize(edad_promedio =
+              mean(edad))
+```
+
+```
+##   edad_promedio
+## 1      9.666667
+```
+
+]
+
+.pull-right[
+![readxl](02_figures/summarise.png)
+]
+
+---
+
+### Primeras funciones de data wrangling
+
+.pull-left[
+- `group_by()` 
+- Agrupo subconjuntos a los cuales se le aplicaran funciones
+
+
+```r
+mis_mascotas_df 
+```
+
+```
+##     nombre pulgas edad
+## 1   pepito   TRUE    3
+## 2  cuchito  FALSE   11
+## 3 cachupin   TRUE   15
+```
+
+```r
+mis_mascotas_df %&gt;% 
+  group_by(pulgas) %&gt;% 
+  summarize(edad_promedio =
+              mean(edad))
+```
+
+```
+## # A tibble: 2 × 2
+##   pulgas edad_promedio
+##   &lt;lgl&gt;          &lt;dbl&gt;
+## 1 FALSE             11
+## 2 TRUE               9
+```
+
+]
+
+.pull-right[
+![readxl](02_figures/group_by.png)]
+
+---
+class: center middle
+
+.center[##descansemos 10 minutos sin pantallas 💻 🚫]
+
+<div class="countdown" id="timer_62b30ae7" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+### Dataset de hoy: películas y series de Netflix
+
+data: `netflix_titles.csv`
+
+* Series y películas disponibles en Netflix a partir de 2019. 
+* En 2018, se publicó que el número de programas de televisión en Netflix casi se ha triplicado desde 2010. 
+* El número de películas ha disminuido en más de 2.000 títulos desde 2010. 
+* La integración de este dataset con  calificaciones de IMDB o Rotten Tomatoes sería interesante
+
+.footnote[
+[1] Readme [TidyTuesday semana 17](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-20/readme.md)
+]
+
+---
+
+### Dataset de hoy: películas y series de Netflix
+
+|variable     |class     |description |
+|:------------|:---------|:-----------|
+|show_id      |character | Unique ID for every Movie / Tv Show |
+|type         |character | Identifier - A Movie or TV Show |
+|title        |character | Title of the Movie / Tv Show |
+|director     |character | Director of the Movie/Show |
+|cast         |character | Actors involved in the movie / show |
+|country      |character | Country where the movie / show was produced |
+|date_added   |character | Date it was added on Netflix |
+|release_year |double    | Actual Release year of the movie / show|
+|rating       |character | TV Rating of the movie / show|
+|duration     |character | Total Duration - in minutes or number of seasons|
+|listed_in    |character | Genre |
+|description  |character | Summary description of the film/show |
+
+---
+
+
+class: center middle inverse
+.right[Abramos R studio e importemos los datos 💻 ]
+
+---
+
+### Objetivos clase hoy
+
+* Aprender a importar datos
+* Entender los datos (tipos y estructuras)
+* Revisar si los datos estan limpios
+* Aplicar funciones para obtener información (estadísticas básicas)
+
+---
+
+# Para terminar por hoy, algo divertido
+
+instala el siguiente paquete
+
+```r
+install.packages('cowsay')
+```
+luego de instalado, corre el siguiente código en la consola
+
+```r
+library(cowsay)
+say('time')
+```
+
+---
+class: center middle inverse
+
+## Nos vemos la próxima semana 🐸
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
