@@ -688,7 +688,11 @@ uno_al_diez == one_to_ten
 
 |  Operador | Operación  |
 |---|---|
+<<<<<<< HEAD
+| x &#x7c; y | x Ó y es verdadero  |
+=======
 |   x &#x7c; y | x Ó y es verdadero  |
+>>>>>>> main
 |   x & y | x Y y son verdaderos   |
 |   !x | x no es verdadero (negación) |
 |   isTRUE(x) | x es verdadero (afirmación) |
@@ -757,7 +761,11 @@ beep(2)
 ```
 
 ---
+
 class: center middle inverse
 
 ## Nos vemos la próxima semana 🐸
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
