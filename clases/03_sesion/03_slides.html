@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>introdución a tidyverse</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sara Acevedo" />
+    <script src="03_slides_files/header-attrs-2.13/header-attrs.js"></script>
+    <link href="03_slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="03_slides_files/panelset-0.2.6/panelset.js"></script>
+    <script src="03_slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="03_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="03_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# introdución a tidyverse
+]
+.subtitle[
+## clase 03: data wrangling
+]
+.author[
+### Sara Acevedo
+]
+
+---
+
+class: center, middle  
+
+
+
+# bienvenidos!!
+.center[Tercera clase de introdución a tidyverse]
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; saryace.github.io](https://biofisica.ing.puc.cl)
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; @saryace](https://twitter.com/soilbiophysics1)
+
+---
+
+### Qué vimos la clase anterior?
+
+* Aprender a importar datos
+* Entender los datos (tipos y estructuras)
+* Revisar si los datos estan limpios
+* Aplicar funciones para obtener información (estadísticas básicas)
+
+---
+class: left inverse
+background-image: url("03_figures/dplyr_wrangling.jpeg")
+background-size: contain
+
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+]
+
+---
+
+### Análisis exploratorio de datos (AED)
+
+.center[![](03_figures/procesar_datos.png)]
+
+
+.footnote[
+[1] [Figura R4DS](https://r4ds.had.co.nz/explore-intro.html)
+
+[2] [Capítulo en español R4DS](https://es.r4ds.hadley.nz/introducci%C3%B3n.html) 
+]
+
+---
+
+### Preguntas de la clase anterior
+
+* `round()` y funciones similares
+
+```r
+numeros_ejemplo &lt;- c(1.1,1.9,-1.1,-1.9)
+
+round(numeros_ejemplo)
+ceiling(numeros_ejemplo)
+floor(numeros_ejemplo)
+trunc(numeros_ejemplo)
+signif(numeros_ejemplo, digits = 1)
+signif(numeros_ejemplo, digits = 3)
+```
+
+---
+
+### Preguntas de la clase anterior
+
+* `round()` y funciones similares
+
+
+```r
+numeros_ejemplo &lt;- c(1.1,1.9,-1.1,-1.9)
+
+round(numeros_ejemplo)
+```
+
+```
+## [1]  1  2 -1 -2
+```
+
+```r
+ceiling(numeros_ejemplo)
+```
+
+```
+## [1]  2  2 -1 -1
+```
+
+```r
+floor(numeros_ejemplo)
+```
+
+```
+## [1]  1  1 -2 -2
+```
+---
+
+
+```r
+numeros_ejemplo &lt;- c(1.1,1.9,-1.1,-1.9)
+
+trunc(numeros_ejemplo)
+```
+
+```
+## [1]  1  1 -1 -1
+```
+
+```r
+signif(numeros_ejemplo, digits = 1)
+```
+
+```
+## [1]  1  2 -1 -2
+```
+
+```r
+signif(numeros_ejemplo, digits = 3)
+```
+
+```
+## [1]  1.1  1.9 -1.1 -1.9
+```
+
+---
+
+### Preguntas de la clase anterior
+
+* función `str_trim` que remueve espacios
+
+
+```r
+df_paises_ejemplo &lt;- data.frame(
+  set_1 = c("Chile, Argentina, Bolivia"),
+  set_2 = c("Argentina , Chile, Bolivia "))
+
+df_paises_ejemplo
+```
+
+```
+##                       set_1                       set_2
+## 1 Chile, Argentina, Bolivia Argentina , Chile, Bolivia
+```
+
+```r
+df_paises_ejemplo %&gt;% 
+  separate_rows(set_1, set_2, sep = ",") 
+```
+
+```
+## # A tibble: 3 × 2
+##   set_1        set_2       
+##   &lt;chr&gt;        &lt;chr&gt;       
+## 1 "Chile"      "Argentina "
+## 2 " Argentina" " Chile"    
+## 3 " Bolivia"   " Bolivia "
+```
+---
+
+
+```r
+df_paises_ejemplo %&gt;% 
+  separate_rows(set_1, set_2, sep = ",") %&gt;% 
+  mutate(paises_comparacion = set_1 == set_2)
+```
+
+```
+## # A tibble: 3 × 3
+##   set_1        set_2        paises_comparacion
+##   &lt;chr&gt;        &lt;chr&gt;        &lt;lgl&gt;             
+## 1 "Chile"      "Argentina " FALSE             
+## 2 " Argentina" " Chile"     FALSE             
+## 3 " Bolivia"   " Bolivia "  FALSE
+```
+
+
+```r
+df_paises_ejemplo %&gt;% 
+  separate_rows(set_1, set_2, sep = ",") %&gt;% 
+  mutate(set_1 = str_trim(set_1),
+          set_2 = str_trim(set_2)) %&gt;% 
+  mutate(paises_comparacion = set_1 == set_2)
+```
+
+```
+## # A tibble: 3 × 3
+##   set_1     set_2     paises_comparacion
+##   &lt;chr&gt;     &lt;chr&gt;     &lt;lgl&gt;             
+## 1 Chile     Argentina FALSE             
+## 2 Argentina Chile     FALSE             
+## 3 Bolivia   Bolivia   TRUE
+```
+
+---
+
+class: center middle inverse
+.right[Clase de hoy: data wrangling]
+
+---
+
+### Objetivos clase hoy
+
+* Paquetes para tipos de datos específicos
+* Formatos de datos (long y wide)
+* Uniones de datos 
+* Ejercicios data wrangling
+
+
+---
+
+### una estructura de datos y buena práctica pendiente: `NA`
+
+En R, usamos `NA` cuando corresponde a datos perdidos, mientras que `NULL` corresponde la ausencia de datos
+
+
+```r
+mis_mascotas_df &lt;- data.frame(
+  "nombre" = c("pepito", "cuchito", "cachupin"), 
+  "pulgas" = c(TRUE, FALSE, TRUE),
+  "edad" = c(3,11,15),
+  "adoptado" = c(TRUE,FALSE,NA))
+
+mis_mascotas_df %&gt;% 
+  filter(adoptado == FALSE)
+```
+
+```
+##    nombre pulgas edad adoptado
+## 1 cuchito  FALSE   11    FALSE
+```
+
+para que una fila sea retenia por filter() la condicion debe arrojar `TRUE`
+---
+
+### una estructura de datos y buena práctica pendiente: `NA`
+
+En R, usamos `NA` cuando corresponde a datos perdidos, mientras que `NULL` corresponde la ausencia de datos
+
+
+```r
+mi_funcion &lt;- function() {
+    #sin instrucciones
+}
+
+objeto_funcion &lt;- mi_funcion()
+
+objeto_funcion
+```
+
+```
+## NULL
+```
+
+
+---
+
+
+### buena práctica pendiente: `NA`
+
+Usar `NA` cuando existan datos perdidos, no otro tipo de dato
+
+
+```r
+mis_mascotas_df_opcion_a &lt;- data.frame(
+  "nombre" = c("pepito", "cuchito", "cachupin"), 
+  "pulgas" = c(TRUE, FALSE, TRUE),
+  "edad" = c(3,11,15),
+  "adoptado" = c(TRUE,FALSE,NA)) # NA = no se conoce el origen
+```
+
+
+```r
+mis_mascotas_df_opcion_b &lt;- data.frame(
+  "nombre" = c("pepito", "cuchito", "cachupin"), 
+  "pulgas" = c(TRUE, FALSE, TRUE),
+  "edad" = c(3,11,15),
+  "adoptado" = c("adoptado en jornada",
+                 "comprado en petshop",
+                 "no se sabe"))
+```
+
+---
+
+### 
+
+.pull-left[
+* dplyr proporciona un set de funciones para la manipulacion de datos más común
+* `mutate()` añade nuevas variables que son funciones de variables existentes
+* `select()` escoge variables basadas en sus nombres
+* `filter()` selecciona los casos en función de sus valores
+* `summarise()` reduce los valores múltiples a un solo resumen
+* `arrange()` cambia el orden de las filas
+* y otras para operaciones condicionales y unión de datos
+]
+
+.pull-right[
+![readr](03_figures/dplyr.png)
+]
+
+.footnote[
+[1] Documentacion [dplyr](https://dplyr.tidyverse.org/)
+]
+
+---
+
+### 
+
+.pull-left[
+* El objetivo de tidyr es ayudar a crear datos ordenados
+* `pivot_longer()` transforma a formato long
+* `pivot_wider()` transforma a formato wide
+]
+
+.pull-right[
+![readr](03_figures/tidyr.png)
+]
+
+.footnote[
+[1] Documentacion [tidyr](https://tidyr.tidyverse.org/)
+]
+
+---
+
+### Datos tidy rectangulares (ordenados)
+
+* Cada variable forma su propia columna
+* Cada observación forma una fila
+* Y cada celda es un único valor
+
+![readr](03_figures/tidy_data.png)
+.footnote[
+[1] R4DS [tidy data](https://r4ds.had.co.nz/tidy-data.html)
+]
+
+---
+
+### 
+
+.pull-left[
+*  stringr proporciona un conjunto cohesionado de funciones diseñadas para facilitar al máximo el trabajo con strings
+* `str_detect()` detecta un patrón de caracteres
+* `str_starts()` detecta un patrón de caracteres al inicio
+* `str_ends()` detecta un patrón de caracteres al final
+* `str_trim()` remueve espacios en blanco del inicio y final
+]
+
+.pull-right[
+![readr](03_figures/stringr.png)
+]
+
+.footnote[
+[1] Documentacion [stringr](https://stringr.tidyverse.org/)
+]
+
+---
+### 
+
+.pull-left[
+* forcats proporciona herramientas que resuelven problemas comunes con los factores, incluyendo el cambio del orden de los niveles o de los valores. 
+* `fct_reorder()` reordena un factor por otra variable
+* `fct_infreq()` reordena un factor por la frecuencia de los valores
+* `fct_relevel()` cambia el orden de un factor a mano
+]
+
+.pull-right[
+![readr](03_figures/forcats.png)
+]
+
+.footnote[
+[1] Documentacion [forcats](https://forcats.tidyverse.org/)
+]
+
+---
+
+### Formatos long y wide
+
+* El formato “wide” es el formato típico tidy rectangular
+* El formato “long” se usa para visualizacion de datos con `ggplot2` 
+
+---
+
+class: middle
+background-image: url("03_figures/wide_long.png")
+background-size: contain
+
+---
+
+class: middle
+background-image: url("03_figures/pivot_wider_longer.gif")
+background-size: contain
+
+---
+
+### Uniones de datos: operaciones join
+
+inner_join() fusiona variables de dos conjuntos de datos, pero conserva sólo las filas con un ID común
+
+![readr](03_figures/inner_.gif)
+---
+
+### Uniones de datos: operaciones join
+
+left_join() fusiona variables de dos conjuntos de datos, pero conserva sólo los ID común de la izquierda 
+
+![readr](03_figures/left_.gif)
+---
+
+### Uniones de datos: operaciones join
+
+right_join() fusiona variables de dos conjuntos de datos, pero conserva sólo los ID común de la derecha
+
+![readr](03_figures/right_.gif)
+---
+
+### Uniones de datos: operaciones join
+
+full_join() retiene todas las filas de los dos conjuntos de datos de entrada e inserta `NA` cuando falta un ID 
+
+![readr](03_figures/full_.gif)
+
+---
+### Dataset de hoy: bebidas de starbucks
+
+data: `starbucks.csv`
+
+* Conjunto de datos nutricionales oficiales de Starbucks procedentes de Starbucks Coffee Company Beverage Nutrition Information. 
+* La versión en pdf tiene 22 páginas y en este dataset sólo se omitieron los datos de leche vaporizada
+
+.footnote[
+[1] Readme [TidyTuesday semana 52](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-12-21/readme.md)
+]
+
+---
+
+### Dataset de hoy: bebidas de starbucks
+
+
+|variable        |class     |description |
+|:---------------|:---------|:-----------|
+|Product_Name    |character | Product Name |
+|Size            |character | Size of drink (short, tall, grande, venti) |
+|Milk            |double    | Milk Type type of milk used
+|                |          |  - `0` none
+|                |          |  - `1` nonfat
+|                |          |  - `2` 2%
+|                |          |  - `3` soy
+|                |          |  - `4` coconut
+|                |          |  - `5` whole |
+|Whip            |double    | Whip added or not (binary 0/1) |
+|Serv_Size_mL    |double    | Serving size in ml |
+|Calories        |double    | KCal|
+
+
+---
+
+
+### Dataset de hoy: bebidas de starbucks
+
+
+|variable        |class     |description |
+|:---------------|:---------|:-----------|
+|Total_Fat_g     |double    | Total fat grams |
+|Saturated_Fat_g |double    | Saturated fat grams |
+|Trans_Fat_g     |character | Trans fat grams |
+|Cholesterol_mg  |double    | Cholesterol mg |
+|Sodium_mg       |double    | Sodium milligrams |
+|Total_Carbs_g   |double    | Total Carbs grams |
+|Fiber_g         |character | Fiber grams |
+|Sugar_g         |double    | Sugar grams  |
+|Caffeine_mg     |double    | Caffeine in milligrams |
+
+---
+
+class: left inverse
+background-image: url("03_figures/starbucks.png")
+background-size: contain
+
+.footnote[
+[Georgios Karamani GitHub](https://github.com/gkaramanis/tidytuesday/tree/master/2021/2021-week51)
+]
+
+
+---
+
+
+class: center middle inverse
+.right[Abramos R studio e importemos los datos 💻 ]
+
+---
+
+### Objetivos clase hoy
+
+* Paquetes para tipos de datos específicos
+* Formatos de datos (long y wide)
+* Uniones de datos 
+* Ejercicios data wrangling
+
+
+
+---
+
+### Para terminar por hoy, algo divertido
+
+```r
+install.packages("devtools") #instalar primero
+devtools::install_github("R-CoderDotCom/calendR") #instalar calendR
+```
+
+
+```r
+library(calendR)
+calendR(year = 2022,                             # anio
+        title = "Clases tidyverse\n2022",         # titulo
+        mbg.col = 2,                             # color de fondo meses
+        months.col = "white",                    # color de los meses
+        monthnames = c("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+                       "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"), #meses en espaniol  
+        special.days = c(166, 173, 180, 187, 194),   # dias a destacar,
+        special.col = "pink",                    # dias especiales
+        months.pos = 0.5,                        # alinear al centro los meses
+        weeknames = c("L", "M", "W", "J",        # dias de la semana
+                      "V", "S","D"), 
+        bg.col = "#f4f4f4",                      # color fondo
+        start = "M",                             # semana parte lunes
+        title.size = 60,                         # tamanio titulo
+        orientation = "p")                       # Orientacion
+```
+
+---
+class: center, middle  
+
+## Nos vemos la próxima semana 🐸
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
