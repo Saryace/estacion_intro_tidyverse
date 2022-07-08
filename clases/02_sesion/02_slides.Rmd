@@ -22,8 +22,9 @@ xaringanExtra::use_clipboard()
 
 # bienvenidos!!
 .center[Segunda clase de introdución a tidyverse]
-[`r icons::fontawesome("link")` saryace.github.io](https://biofisica.ing.puc.cl)
-[`r icons::fontawesome("twitter")` @saryace](https://twitter.com/soilbiophysics1)
+[`r icons::fontawesome("link")` saryace.github.io](https://saryace.github.io)
+[`r icons::fontawesome("twitter")` @saryace](https://twitter.com/saryace)
+
 
 ---
 

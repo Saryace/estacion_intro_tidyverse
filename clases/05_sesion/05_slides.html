@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>introdución a tidyverse</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sara Acevedo" />
+    <script src="05_slides_files/header-attrs-2.13/header-attrs.js"></script>
+    <link href="05_slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="05_slides_files/panelset-0.2.6/panelset.js"></script>
+    <script src="05_slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="05_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="05_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# introdución a tidyverse
+]
+.subtitle[
+## clase 05: iteración usando purrr + modelo lineal
+]
+.author[
+### Sara Acevedo
+]
+.date[
+### 13/7/2022
+]
+
+---
+
+class: center, middle  
+
+
+
+# bienvenidos!!
+.center[Quinta clase de introdución a tidyverse]
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; saryace.github.io](https://saryace.github.io)
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; @saryace](https://twitter.com/saryace)
+
+---
+
+### Qué vimos la clase anterior?
+
+* Familiarizarnos con ggplot2 y Rmarkdown
+* Formatos de datos (long y wide)
+* Exportar gráficos y tablas a Word y pdf
+
+---
+class: left inverse
+background-image: url("05_figures/for_loop.jpeg")
+background-size: contain
+
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+]
+
+---
+
+class: left inverse
+background-image: url("05_figures/purrr.png")
+background-size: contain
+
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+]
+
+---
+
+### Análisis exploratorio de datos (AED)
+
+.center[![](05_figures/communicate.jpeg)]
+
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+]
+
+---
+
+### Preguntas de la clase anterior
+
+Importar datos de excel a R: readxl
+
+```r
+library(readxl)
+
+# Aca usamos una funcion ejemplo para cargar datos
+xls_ejemplo &lt;- readxl_example("datasets.xls")
+
+#Usamos la funcion read_excel
+read_excel(xls_ejemplo)
+```
+
+```
+## # A tibble: 150 × 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;&lt;chr&gt; 
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          4.9         3            1.4         0.2 setosa 
+##  3          4.7         3.2          1.3         0.2 setosa 
+##  4          4.6         3.1          1.5         0.2 setosa 
+##  5          5           3.6          1.4         0.2 setosa 
+##  6          5.4         3.9          1.7         0.4 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          5           3.4          1.5         0.2 setosa 
+##  9          4.4         2.9          1.4         0.2 setosa 
+## 10          4.9         3.1          1.5         0.1 setosa 
+## # … with 140 more rows
+```
+
+
+---
+
+### Preguntas de la clase anterior
+
+Importar datos de excel a R: readxl
+
+```r
+#miramos si tiene hojas
+excel_sheets(xls_ejemplo) 
+```
+
+```
+## [1] "iris"     "mtcars"   "chickwts" "quakes"
+```
+
+```r
+#leo la hoja que quiero
+read_excel(xls_ejemplo, sheet = "iris") 
+```
+
+```
+## # A tibble: 150 × 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;&lt;chr&gt; 
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          4.9         3            1.4         0.2 setosa 
+##  3          4.7         3.2          1.3         0.2 setosa 
+##  4          4.6         3.1          1.5         0.2 setosa 
+##  5          5           3.6          1.4         0.2 setosa 
+##  6          5.4         3.9          1.7         0.4 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          5           3.4          1.5         0.2 setosa 
+##  9          4.4         2.9          1.4         0.2 setosa 
+## 10          4.9         3.1          1.5         0.1 setosa 
+## # … with 140 more rows
+```
+
+---
+
+### Preguntas de la clase anterior
+
+Importar datos de excel a R: readxl
+
+```r
+# puedo usar rangos
+read_excel(xls_ejemplo,
+           sheet = "iris",
+           range = "A1:B6")
+```
+
+```
+## # A tibble: 5 × 2
+##   Sepal.Length Sepal.Width
+##          &lt;dbl&gt;      &lt;dbl&amp;gt;
+## 1          5.1         3.5
+## 2          4.9         3  
+## 3          4.7         3.2
+## 4          4.6         3.1
+## 5          5           3.6
+```
+---
+
+### Preguntas de la clase anterior
+
+Importar datos de excel a R: readxl
+
+```r
+# puedo usar rangos
+read_excel(xls_ejemplo,
+           sheet = "iris",
+           range = "A1:B6",
+           col_types = "text")
+```
+
+```
+## # A tibble: 5 × 2
+##   Sepal.Length       Sepal.Width       
+##   &lt;chr&gt;             &lt;chr&gt;            
+## 1 5.0999999999999996 3.5               
+## 2 4.9000000000000004 3                 
+## 3 4.7000000000000002 3.2000000000000002
+## 4 4.5999999999999996 3.1000000000000001
+## 5 5                  3.6000000000000001
+```
+---
+### Preguntas de la clase anterior
+
+Importar datos de googledrive a R: googlesheets4
+
+```r
+library(googlesheets4)
+
+#esto indica que usare links abiertos
+gs4_deauth() 
+
+#google sheet publica 
+read_sheet("https://docs.google.com/spreadsheets/d/1U6Cf_qEOhiR9AZqTqS3mbMF3zt2db48ZP5v3rkrAEJY/edit#gid=780868077")
+```
+
+```
+## ✔ Reading from "gapminder".
+```
+
+```
+## ✔ Range 'Africa'.
+```
+
+```
+## # A tibble: 624 × 6
+##    country continent  year lifeExp      pop gdpPercap
+##    &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&amp;gt;
+##  1 Algeria Africa     1952    43.1  9279525     2449.
+##  2 Algeria Africa     1957    45.7 10270856     3014.
+##  3 Algeria Africa     1962    48.3 11000948     2551.
+##  4 Algeria Africa     1967    51.4 12760499     3247.
+##  5 Algeria Africa     1972    54.5 14760787     4183.
+##  6 Algeria Africa     1977    58.0 17152804     4910.
+##  7 Algeria Africa     1982    61.4 20033753     5745.
+##  8 Algeria Africa     1987    65.8 23254956     5681.
+##  9 Algeria Africa     1992    67.7 26298373     5023.
+## 10 Algeria Africa     1997    69.2 29072015     4797.
+## # … with 614 more rows
+```
+---
+### Preguntas de la clase anterior
+
+Importar datos de google drive a R: googlesheets4
+
+```r
+library(googlesheets4)
+
+gs4_auth() # correr en consola y seguir instrucciones
+
+#google sheet privada
+read_sheet("https://docs.google.com/spreadsheets/link-privado")
+```
+---
+### Preguntas de la clase anterior
+
+Orden para definir `left_join` o `right_join`
+
+```r
+mis_gatos &lt;- data.frame("nombre" = c("cuchito", "minino", 
+                                     "bigotito"),
+                    "color" = c("negro", "blanco",
+                                "atigrado"))
+
+examenes_gato &lt;- data.frame("paciente" = c("cuchito", "minino",
+                                           "pedrito",
+                                           "rambo","bigotito"),
+                    "positivo_pulgas" = c(TRUE,FALSE,TRUE,
+                                          FALSE,TRUE))
+```
+
+Si quiero crear un nuevo objeto de mis gatos + info de pulgas...
+
+1. Identificar columna ID
+2. Operación debe priorizar a `mis_gatos`
+
+---
+
+### Preguntas de la clase anterior
+
+Orden para definir `left_join` o `right_join`
+
+
+```r
+mis_gatos
+```
+
+```
+##     nombre    color
+## 1  cuchito    negro
+## 2   minino   blanco
+## 3 bigotito atigrado
+```
+
+```r
+examenes_gato
+```
+
+```
+##   paciente positivo_pulgas
+## 1  cuchito            TRUE
+## 2   minino           FALSE
+## 3  pedrito            TRUE
+## 4    rambo           FALSE
+## 5 bigotito            TRUE
+```
+
+---
+
+### Preguntas de la clase anterior
+
+Orden para definir `left_join` o `right_join`
+
+
+```r
+mis_gatos %&gt;% left_join(examenes_gato, by=c("nombre"="paciente"))
+```
+
+```
+##     nombre    color positivo_pulgas
+## 1  cuchito    negro            TRUE
+## 2   minino   blanco           FALSE
+## 3 bigotito atigrado            TRUE
+```
+
+```r
+examenes_gato %&gt;% right_join(mis_gatos, by=c("paciente"="nombre"))
+```
+
+```
+##   paciente positivo_pulgas    color
+## 1  cuchito            TRUE    negro
+## 2   minino           FALSE   blanco
+## 3 bigotito            TRUE atigrado
+```
+
+```r
+examenes_gato %&gt;% anti_join(mis_gatos, by=c("paciente"="nombre"))
+```
+
+```
+##   paciente positivo_pulgas
+## 1  pedrito            TRUE
+## 2    rambo           FALSE
+```
+---
+### Preguntas de la clase anterior
+
+Orden para definir `left_join` o `right_join` + `desc(character)`
+
+```r
+mis_gatos %&gt;% 
+  left_join(examenes_gato, by=c("nombre"="paciente")) %&gt;% 
+  arrange(-desc(nombre))
+```
+
+```
+##     nombre    color positivo_pulgas
+## 1 bigotito atigrado            TRUE
+## 2  cuchito    negro            TRUE
+## 3   minino   blanco           FALSE
+```
+
+```r
+mis_gatos %&gt;% 
+  left_join(examenes_gato, by=c("nombre"="paciente")) %&gt;% 
+  arrange(-desc(nombre))
+```
+
+```
+##     nombre    color positivo_pulgas
+## 1 bigotito atigrado            TRUE
+## 2  cuchito    negro            TRUE
+## 3   minino   blanco           FALSE
+```
+---
+
+class: left inverse
+background-image: url("04_figures/how_much_i_know.jpeg")
+background-size: contain
+
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+]
+
+---
+
+### Preguntas de la clase anterior: ayuda!
+
+Como buscar información sobre funciones y errores, considerando que:
+
+.pull-left[
+1. R es el peor lenguaje para googlear
+2. Vocabulario adecuado de la terminología de R puede ayudar
+]
+
+.pull-right[
+![rake](04_figures/rake.png)
+]
+---
+
+### Preguntas de la clase anterior: ayuda!
+Los errores clásicos se pueden buscar en google como [R] + mensaje
+
+```r
+cafes &lt;- data__frame("nombre" = c("APV","no_APV"),
+                           "precio" = c(1500,1750)
+cafe$nombre
+```
+
+- `Error: unexpected symbol in...`
+- `Error: object 'cafe' not found`
+- `could not find function "data__frame"`
+
+---
+
+### Preguntas de la clase anterior: ayuda!
+Siempre es bueno revisar la documentación de las funciones que queremos usar
+
+- Escribir en la consola `?funcion`, `??funcion` o `help(funcion)` para ir a la ayuda
+- Buscar paquete + cheatsheet en google
+- Buscar paquete + vignette en google
+
+---
+
+### Preguntas de la clase anterior: ayuda!
+- Sé lo que mi código necesita hacer pero no se como escribirlo
+- Usar lenguage técnico sobre clases y estructuras de datos ayuda
+
+ejemplo: tengo que extraer los minutos de `duracion_peliculas` 
+
+```r
+duracion_peliculas &lt;- c("30 min", "120 min")
+class(duracion_peliculas)
+```
+
+```
+## [1] "character"
+```
+si busco en google: `extract number from string tidyverse` aparece la funcion `parse_number`
+
+```r
+parse_number(duracion_peliculas)
+```
+
+```
+## [1]  30 120
+```
+
+Para mas tips [Teach me how to Google](https://ucsb-meds.github.io/teach-me-how-to-google/#1)
+---
+
+### Pendiente: expresiones regulares (regex) 
+secuencia de caracteres que define un patrón de búsqueda, principalmente para comparación de strings
+
+```r
+estadisticas &lt;- data.frame("nombre" = c("cafe APV","cafe no APV"),
+                           "azucar_g_prom" = c(1,3),
+                           "azucar_g_min" = c(0.5,0.3),
+                           "cafeina_g_prom" = c(0.1,0.3),
+                           "cafeina_g_min" = c(0.01,0.03))
+estadisticas
+```
+
+```
+##        nombre azucar_g_prom azucar_g_min cafeina_g_prom cafeina_g_min
+## 1    cafe APV             1          0.5            0.1          0.01
+## 2 cafe no APV             3          0.3            0.3          0.03
+```
+---
+
+### Pendiente: expresiones regulares (regex) 
+secuencia de caracteres que define un patrón de búsqueda, principalmente para comparación de strings
+
+```r
+estadisticas #formato wide
+```
+
+```
+##        nombre azucar_g_prom azucar_g_min cafeina_g_prom cafeina_g_min
+## 1    cafe APV             1          0.5            0.1          0.01
+## 2 cafe no APV             3          0.3            0.3          0.03
+```
+
+
+```r
+estadisticas %&gt;% #formato long
+  pivot_longer(
+    cols = !nombre, #todas las columnas excepto nombre
+    names_to = c('datos_bebida', '.value'), #nuevas columnas = datos_bebida + .value = prom, min ...
+    names_pattern = '(.*)_(\\w+)') # expresion regular para nuevas columnas
+```
+
+```
+## # A tibble: 4 × 4
+##   nombre      datos_bebida  prom   min
+##   &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;&lt;dbl&amp;gt;
+## 1 cafe APV    azucar_g       1    0.5 
+## 2 cafe APV    cafeina_g      0.1  0.01
+## 3 cafe no APV azucar_g       3    0.3 
+## 4 cafe no APV cafeina_g      0.3  0.03
+```
+
+---
+
+### Pendiente: expresiones regulares (regex) 
+
+Para más detalle ver [R4DS capítulo strings](https://es.r4ds.hadley.nz/cadenas-de-caracteres.html#cadenas-elementos-b%C3%A1sicos)
+
+el patrón `(.*)_(\\w+)` significa
+- `(.*)`  "primer grupo grupo de cero o más caracteres"
+- `_` underscore (separador)
+- `(\\w+)` "segundo grupo: una palabra"
+
+Esto pondrá todo hasta el último guión bajo en la columna `'datos_bebida'` y los datos restantes se mantienen como el nombre de columna
+
+---
+### Expresiones regulares (regex) 
+A veces no son muy prácticas: utilizarlas solo cuando sea necesario
+
+```r
+estadisticas %&gt;% #formato long
+  pivot_longer(
+    cols = !nombre, #todas las columnas excepto nombre
+    names_to = c('datos_bebida', '.value'), #nuevas columnas = datos_bebida + .value = prom, min ...
+    names_pattern = '(.)_(.)') # expresion regular para nuevas columnas
+```
+
+```
+## # A tibble: 8 × 3
+##   nombre      datos_bebida     g
+##   &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&amp;gt;
+## 1 cafe APV    r             1   
+## 2 cafe APV    r             0.5 
+## 3 cafe APV    a             0.1 
+## 4 cafe APV    a             0.01
+## 5 cafe no APV r             3   
+## 6 cafe no APV r             0.3 
+## 7 cafe no APV a             0.3 
+## 8 cafe no APV a             0.03
+```
+---
+
+class: center middle inverse
+.right[Clase de hoy: reportes usando ggplot2 y Rmarkdown]
+
+---
+
+### Objetivos clase hoy
+
+* Familiarizarnos con ggplot2 y Rmarkdown
+* Formatos de datos (long y wide)
+* Exportar gráficos y tablas a Word y pdf
+
+---
+
+### Familiarizarnos con ggplot2 y Rmarkdown
+
+- RMarkdown: es un formato para crear documentos dinámicos con R. Un documento R Markdown está escrito en markdown (un formato de texto plano) y contiene trozos de código R. 
+
+- ggplot2: es un paquete de R potente y flexible, parte de `tidyverse` para producir gráficos elegantes. El concepto detrás de ggplot2 divide los gráficos en tres componentes: plot = datos + estética + geometría (plot = data + aesthetics + geom)
+
+--- 
+
+### Formatos long y wide
+
+* El formato “wide” es el formato típico tidy rectangular
+* El formato “long” se usa para visualizacion de datos con `ggplot2` 
+
+---
+
+class: middle
+background-image: url("04_figures/tidyr-pivot_wider_longer.gif")
+background-size: contain
+
+---
+
+### `pivot_longer` 
+
+`pivot_longer(cols ="columnas a pivotear (!ID)", names_to: "nombre columna general", values_to: "valores columna general")` 
+
+
+```r
+mis_gatos_pulgas &lt;- data.frame("nombre" = c("cuchito", "minino", 
+                                     "bigotito"),
+                    "color" = c("negro", "blanco",
+                                "atigrado"),
+                    "personalidad" = c("arisco","amoroso", "amoroso"))
+mis_gatos_pulgas
+```
+
+```
+##     nombre    color personalidad
+## 1  cuchito    negro       arisco
+## 2   minino   blanco      amoroso
+## 3 bigotito atigrado      amoroso
+```
+---
+
+### `pivot_longer` 
+
+`pivot_longer(cols ="columnas a pivotear (!ID)", names_to: "nombre columna general", values_to: "valores columna general")` 
+
+
+```r
+mis_gatos_pulgas %&gt;% 
+  #cols = c(color,positivo_pulgas),
+  pivot_longer(cols = !nombre,# otra forma
+               names_to = "caracteristicas_gato",
+               values_to = "caracteristica") 
+```
+
+```
+## # A tibble: 6 × 3
+##   nombre   caracteristicas_gato caracteristica
+##   &lt;chr&gt;   &lt;chr&gt;               &lt;chr&gt;        
+## 1 cuchito  color                negro         
+## 2 cuchito  personalidad         arisco        
+## 3 minino   color                blanco        
+## 4 minino   personalidad         amoroso       
+## 5 bigotito color                atigrado      
+## 6 bigotito personalidad         amoroso
+```
+
+recordemos que R siempre quiere que las columnas sean de solo 1 tipo (clase) de datos
+---
+
+### `pivot_wider` 
+
+`pivot_wider(names_from: "columna con nombres", values_from: "columna con valores")` 
+
+
+```r
+mis_gatos_examenes &lt;- data.frame("nombre" = c("cuchito", "minino", 
+                                     "bigotito","cuchito", "minino", 
+                                     "bigotito"),
+                    "examen" = c("colesterol", "colesterol","colesterol",
+                                 "glucosa","glucosa", "glucosa"),
+                    "valor" = c(1,3,4,2,4,6))
+mis_gatos_examenes
+```
+
+```
+##     nombre     examen valor
+## 1  cuchito colesterol     1
+## 2   minino colesterol     3
+## 3 bigotito colesterol     4
+## 4  cuchito    glucosa     2
+## 5   minino    glucosa     4
+## 6 bigotito    glucosa     6
+```
+---
+
+
+### `pivot_wider` 
+
+`pivot_wider(id_cols ="columnas a pivotear (!ID)", names_from: "columna con nombres", values_from: "columna con valores")` 
+
+
+```r
+mis_gatos_examenes %&gt;% 
+  pivot_wider(id_cols = nombre,
+              names_from = "examen",
+              values_from = "valor")
+```
+
+```
+## # A tibble: 3 × 3
+##   nombre   colesterol glucosa
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&amp;gt;
+## 1 cuchito           1       2
+## 2 minino            3       4
+## 3 bigotito          4       6
+```
+
+
+---
+
+### Uniones de datos + pivot
+
+
+```r
+mis_gatos_pulgas
+```
+
+```
+##     nombre    color personalidad
+## 1  cuchito    negro       arisco
+## 2   minino   blanco      amoroso
+## 3 bigotito atigrado      amoroso
+```
+
+```r
+mis_gatos_examenes %&gt;% 
+  pivot_wider(id_cols = nombre,
+              names_from = "examen",
+              values_from = "valor") 
+```
+
+```
+## # A tibble: 3 × 3
+##   nombre   colesterol glucosa
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&amp;gt;
+## 1 cuchito           1       2
+## 2 minino            3       4
+## 3 bigotito          4       6
+```
+---
+### Uniones de datos + pivot
+
+
+```r
+mis_gatos_examenes %&gt;% 
+  pivot_wider(id_cols = nombre,
+              names_from = "examen",
+              values_from = "valor") %&gt;% 
+  inner_join(mis_gatos_pulgas)
+```
+
+```
+## Joining, by = "nombre"
+```
+
+```
+## # A tibble: 3 × 5
+##   nombre   colesterol glucosa color    personalidad
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;&lt;chr&gt;   &lt;chr&gt;      
+## 1 cuchito           1       2 negro    arisco      
+## 2 minino            3       4 blanco   amoroso     
+## 3 bigotito          4       6 atigrado amoroso
+```
+
+---
+### `ggplot2`
+
+.pull-left[
+- la idea de `ggplot2` es ir agregando capas 
+- las más básicas son data + aesthetic + geometry
+- `pivot_longer()` + `ggplot` son excelentes amigos
+
+
+```r
+mis_gatos_examenes
+```
+
+```
+##     nombre     examen valor
+## 1  cuchito colesterol     1
+## 2   minino colesterol     3
+## 3 bigotito colesterol     4
+## 4  cuchito    glucosa     2
+## 5   minino    glucosa     4
+## 6 bigotito    glucosa     6
+```
+
+]
+
+.pull-right[
+![capas](04_figures/capas_ggplo2.png)
+]
+
+---
+### `ggplot2`
+
+se compone de tres partes: data + aesthetic + geometry
+
+.pull-left[
+
+
+```r
+mis_gatos_examenes &lt;- data.frame("nombre" = c("cuchito", "minino", 
+                                     "bigotito","cuchito", "minino", 
+                                     "bigotito"),
+                    "examen" = c("colesterol", "colesterol","colesterol",
+                                 "glucosa","glucosa", "glucosa"),
+                    "valor" = c(1,3,4,2,4,6))
+
+mis_gatos_examenes %&gt;% 
+  ggplot(aes(x = nombre,
+             y = valor,
+             color = examen)) +
+  geom_point()
+```
+]
+
+.pull-right[
+
+![](05_slides_files/figure-html/plot-1-out-1.png)&lt;!-- --&gt;
+
+]
+
+---
+### `ggplot2`
+
+se pueden ir agregando capas de detalle usando `+`
+
+.pull-left[
+
+
+```r
+mis_gatos_examenes %&gt;% 
+  ggplot(aes(x = nombre,
+             y = valor)) +
+  geom_point() +
+  facet_grid(.~ examen)
+```
+]
+
+.pull-right[
+![](05_slides_files/figure-html/plot-2-out-1.png)&lt;!-- --&gt;
+]
+
+---
+
+### `ggplot2`
+
+se pueden ir agregando capas de detalle usando `+`
+
+.pull-left[
+
+
+```r
+mis_gatos_examenes %&gt;% 
+  ggplot(aes(x = nombre,
+             y = valor, 
+             fill = examen)) +
+  geom_col() +
+  facet_grid(.~ examen) +
+  coord_flip() +
+  theme_bw()
+```
+]
+
+.pull-right[
+![](05_slides_files/figure-html/plot-3-out-1.png)&lt;!-- --&gt;
+]
+
+---
+
+### `ggplot2`
+
+.pull-left[
+
+
+```r
+limites &lt;- data.frame(examen = c("colesterol",
+                                 "glucosa"),  
+                            maximo = c(3,5))
+mis_gatos_examenes %&gt;% 
+  ggplot(aes(x = nombre,
+             y = valor, 
+             fill = examen)) +
+  geom_col() +
+  facet_grid(.~ examen) +                                             
+  geom_hline(data = limites,
+             aes(yintercept = maximo)) +
+  theme_bw()
+```
+]
+
+.pull-right[
+![](05_slides_files/figure-html/plot-4-out-1.png)&lt;!-- --&gt;
+]
+
+---
+
+### `Rmarkdown`
+
+.pull-left[
+- tiene tres componentes: Markdown, R y YAML
+- estos componentes se "tejen" 
+- YAML define los formatos de salida
+]
+
+.pull-right[
+![rmd](04_figures/rmd-inline.png)
+]
+
+---
+# Sintaxis Rmarkdown
+
+.panelset[
+
+.panel[.panel-name[encabezados]
+
+.pull-left[
+
+```md
+# Primer nivel
+## Segundo nivel
+### Tercer nivel
+#### Cuarto nivel
+```
+
+].pull-right[
+
+# Primer nivel
+## Segundo nivel
+### Tercer nivel
+#### Cuarto nivel
+  
+]
+
+]
+
+.panel[.panel-name[texto]
+
+.pull-left[
+
+```md
+~~tachado~~
+**negrita**
+*cursiva*
+`.Rmd`
+```
+
+].pull-right[
+
+~~tachado~~
+**negrita**
+*cursiva*
+`.Rmd`
+]
+
+&lt;/br&gt; 
+
+]
+.panel[.panel-name[bullets]
+
+.pull-left[
+
+```md
+- Elemento 1
+- Elemento 2
+  - Subelemento 
+  - Subelemento 
+
+1. Elemento 1 
+2. Elemento 2
+```
+
+].pull-right[
+
+- Elemento 1
+- Elemento 2
+  - Subelemento 
+  - Subelemento 
+
+1. Elemento 1 
+2. Elemento 2
+]
+
+&lt;/br&gt; 
+
+]
+
+.panel[.panel-name[imágenes]
+
+.pull-left[
+
+```md
+![imagen](https://rforcats.net/assets/img/programmer.png)
+```
+
+].pull-right[
+.center[
+![imagen](https://rforcats.net/assets/img/programmer.png)
+]
+]
+
+
+]
+
+.panel[.panel-name[tablas]
+
+.pull-left[
+
+```md
+
+Primer encabezado     | Segundo encabezado
+--------------------- | ---------------------
+Contenido de la celda | Contenido de la celda
+Contenido de la celda | Contenido de la celda
+
+```
+
+].pull-right[
+.center[
+
+Primer encabezado     | Segundo encabezado
+--------------------- | ---------------------
+Contenido de la celda | Contenido de la celda
+Contenido de la celda | Contenido de la celda
+
+]
+]
+
+
+]
+
+.panel[.panel-name[links]
+
+.pull-left[
+
+```md
+[R4DS Rmarkdown](https://es.r4ds.hadley.nz/r-markdown.html)
+```
+
+].pull-right[
+
+[R4DS Rmarkdown](https://es.r4ds.hadley.nz/r-markdown.html)
+]
+
+&lt;/br&gt; 
+
+]
+
+]
+
+
+
+
+---
+
+### Dataset de hoy: bebidas de starbucks
+
+data: `starbucks.csv`
+
+* Conjunto de datos nutricionales oficiales de Starbucks procedentes de Starbucks Coffee Company Beverage Nutrition Information. 
+* La versión en pdf tiene 22 páginas y en este dataset sólo se omitieron los datos de leche vaporizada
+
+.footnote[
+[1] Readme [TidyTuesday semana 52](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-12-21/readme.md)
+]
+
+---
+
+### Dataset de hoy: bebidas de starbucks
+
+
+|variable        |class     |description |
+|:---------------|:---------|:-----------|
+|Product_Name    |character | Product Name |
+|Size            |character | Size of drink (short, tall, grande, venti) |
+|Milk            |double    | Milk Type type of milk used
+|                |          |  - `0` none
+|                |          |  - `1` nonfat
+|                |          |  - `2` 2%
+|                |          |  - `3` soy
+|                |          |  - `4` coconut
+|                |          |  - `5` whole |
+|Whip            |double    | Whip added or not (binary 0/1) |
+|Serv_Size_mL    |double    | Serving size in ml |
+|Calories        |double    | KCal|
+
+
+---
+
+### Dataset de hoy: bebidas de starbucks
+
+
+|variable        |class     |description |
+|:---------------|:---------|:-----------|
+|Total_Fat_g     |double    | Total fat grams |
+|Saturated_Fat_g |double    | Saturated fat grams |
+|Trans_Fat_g     |character | Trans fat grams |
+|Cholesterol_mg  |double    | Cholesterol mg |
+|Sodium_mg       |double    | Sodium milligrams |
+|Total_Carbs_g   |double    | Total Carbs grams |
+|Fiber_g         |character | Fiber grams |
+|Sugar_g         |double    | Sugar grams  |
+|Caffeine_mg     |double    | Caffeine in milligrams |
+
+---
+
+
+class: center middle inverse
+.right[Abramos R studio e importemos los datos 💻 ]
+
+---
+
+### Objetivos clase hoy
+
+* Familiarizarnos con ggplot2 y Rmarkdown
+* Formatos de datos (long y wide)
+* Exportar gráficos y tablas a Word y pdf
+
+---
+
+### Para terminar por hoy, algo divertido
+
+---
+class: center, middle  
+
+## Nos vemos la próxima semana 🐸
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
