@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>introdución a tidyverse</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sara Acevedo" />
+    <script src="05_slides_files/header-attrs-2.13/header-attrs.js"></script>
+    <link href="05_slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="05_slides_files/panelset-0.2.6/panelset.js"></script>
+    <script src="05_slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="05_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="05_slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="05_slides_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <link href="05_slides_files/str_view-0.1.0/str_view.css" rel="stylesheet" />
+    <script src="05_slides_files/str_view-binding-1.4.0/str_view.js"></script>
+    <link href="05_slides_files/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="05_slides_files/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# introdución a tidyverse
+]
+.subtitle[
+## clase 05: iteración usando purrr + modelo lineal
+]
+.author[
+### Sara Acevedo
+]
+.date[
+### 13/7/2022
+]
+
+---
+
+class: center, middle  
+
+
+
+# bienvenidos!!
+.center[Quinta clase de introdución a tidyverse]
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; saryace.github.io](https://saryace.github.io)
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; @saryace](https://twitter.com/saryace)
+
+---
+
+### Qué vimos la clase anterior?
+
+* Familiarizarnos con ggplot2 y Rmarkdown
+* Formatos de datos (long y wide)
+* Exportar gráficos y tablas a Word y pdf
+
+---
+
+### Qué veremos hoy?
+
+* Iteración, loops y funciones
+* Paquete `purrr`
+* Modelo linear simple
+
+---
+class: left inverse
+background-image: url("05_figures/for_loop.jpeg")
+background-size: contain
+
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+]
+
+---
+
+class: left inverse
+background-image: url("05_figures/purrr.png")
+background-size: contain
+
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+]
+
+---
+
+### Análisis exploratorio de datos (AED)
+
+.center[![](05_figures/communicate.jpeg)]
+
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+]
+
+---
+
+### Preguntas de la clase anterior
+
+Una revisión de expresiones regulares y como usar `stringr`
+**patrón al final de una palabra**
+
+
+```r
+mis_gatos &lt;- c("uma", "cuchito", "michito")
+
+str_view(mis_gatos, "ito$")
+```
+
+<div id="htmlwidget-a7e780d0e0344b1f3cdc" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a7e780d0e0344b1f3cdc">{"x":{"html":"<ul>\n  <li>uma<\/li>\n  <li>cuch<span class='match'>ito<\/span><\/li>\n  <li>mich<span class='match'>ito<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### Preguntas de la clase anterior
+
+Una revisión de expresiones regulares y como usar `stringr`
+**patrón al inicio de una palabra**
+
+
+```r
+mis_gatos &lt;- c("uma", "cuchito", "michito")
+
+str_view(mis_gatos, "^u") 
+```
+
+<div id="htmlwidget-435f692af9d5a799b948" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-435f692af9d5a799b948">{"x":{"html":"<ul>\n  <li><span class='match'>u<\/span>ma<\/li>\n  <li>cuchito<\/li>\n  <li>michito<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### Preguntas de la clase anterior
+
+Una revisión de expresiones regulares y como usar `stringr`
+**patrón en "sandwich" de una palabra**
+
+
+```r
+mis_gatos &lt;- c("uma", "cuchito", "michito")
+
+str_view(mis_gatos, ".chi.") 
+```
+
+<div id="htmlwidget-fa7f1da8393737f25952" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fa7f1da8393737f25952">{"x":{"html":"<ul>\n  <li>uma<\/li>\n  <li>c<span class='match'>uchit<\/span>o<\/li>\n  <li>m<span class='match'>ichit<\/span>o<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### Preguntas de la clase anterior
+
+`stringr` tiene funciones que reemplazan las regex más comunes
+
+- str_ends()
+- str_starts()
+- str_contains()
+
+---
+
+### Preguntas de la clase anterior
+
+`stringr` a veces no es suficiente y regex es requerido
+
+
+```r
+rut &lt;- c("92.580.000-7", "5.555.555-5", "5555555-5",
+         "12.345.678-K","12.345.678-k")
+
+regex_rut &lt;- "^([0-9]{1,3}(?:\\.[0-9]{1,3}){2}-[[0-9]kK])$"
+
+# ^([0-9]{1,3} al inicio de 1 a 3 digitos
+# (?:\\.[0-9]{1,3}){2} dos set de un punto + 1 a 3 digitos no agrupados
+# - separador
+# [[0-9]kK])$ cualquiera de lo siguiente: digito, k o K al final
+```
+
+.footnote[
+[1] [Ejemplo regex adaptado desde regexlib](https://www.regexlib.com/REDetails.aspx?regexp_id=1597)
+]
+
+---
+
+### Preguntas de la clase anterior
+
+`stringr` a veces no es suficiente y regex es requerido
+
+
+```r
+rut &lt;- c("92.580.000-7", "5.555.555-5", "5555555-5",
+         "12.345.678-K","12.345.678-k")
+
+regex_rut &lt;- "^([0-9]{1,3}(?:\\.[0-9]{1,3}){2}-[[0-9]kK])$"
+  
+str_view(rut, regex_rut)
+```
+
+<div id="htmlwidget-a0de0c8ba406cdde81ad" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a0de0c8ba406cdde81ad">{"x":{"html":"<ul>\n  <li><span class='match'>92.580.000-7<\/span><\/li>\n  <li><span class='match'>5.555.555-5<\/span><\/li>\n  <li>5555555-5<\/li>\n  <li><span class='match'>12.345.678-K<\/span><\/li>\n  <li><span class='match'>12.345.678-k<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+
+.footnote[
+[1] [Ejemplo regex adaptado desde regexlib](https://www.regexlib.com/REDetails.aspx?regexp_id=1597)
+]
+
+---
+### Preguntas de la clase anterior
+
+Cuando usar cada paquete?
+
+.center[![rmd](05_figures/tidyverse.png)]
+
+.footnote[
+[1] [Old school vs. tidyverse](https://germangfeler.github.io/datascience/old-school-vs-tidy/)
+]
+
+
+---
+
+### Cuando usar `purrr`
+
+.pull-left[
+- Leer varios archivos a la vez
+- Trabajar con listas
+- Transformar datos a datos rectangulares
+]
+
+.pull-right[
+![rmd](05_figures/purrr_cat.png)
+]
+
+.footnote[
+[1] [Allison Horst’s Twitter: @allison_horst](https://twitter.com/allison_horst/)
+[2] [RStudio Education](https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-4-when-to-purrr/)
+]
+---
+
+### Recordemos que es una lista
+
+- Dataframes y tibbles pueden guardar diferentes tipos de datos en columnas
+
+- Las listas permiten contener cosas como dataframes, matrices y vectores en una misma variable.
+
+.panelset[
+
+.panel[.panel-name[crear una lista]
+
+.pull-left[
+
+
+```r
+trencito &lt;- list(1:3, "a", 4:6)
+```
+
+].pull-right[
+
+.center[![](05_figures/train_1.png)]
+  
+]
+
+]
+
+.panel[.panel-name[trencito]
+
+.pull-left[
+
+
+```r
+trencito &lt;- list(1:3, "a", 4:6)
+
+trencito[1]
+```
+
+```
+## [[1]]
+## [1] 1 2 3
+```
+
+```r
+trencito[[1]]
+```
+
+```
+## [1] 1 2 3
+```
+
+].pull-right[
+
+.center[![](05_figures/train_3.png)]
+  
+]
+
+&lt;/br&gt; 
+
+]
+
+.panel[.panel-name[extraer elementos]
+
+.pull-left[
+
+```r
+trencito[1:2]
+
+trencito[-2]
+
+trencito[c(1,1)]
+
+trencito[0]
+```
+
+].pull-right[
+
+.center[![](05_figures/train_2.png)]
+  
+]
+
+&lt;/br&gt; 
+
+
+]
+
+]
+
+---
+
+### Vamos a crear un vector y una función
+
+
+```r
+uno_al_diez &lt;- c(1:10)
+
+por_diez &lt;- function(x) x*10
+```
+
+### ahora vamos a aplicar la función al vector
+
+
+```r
+uno_al_diez_por_diez &lt;- por_diez(uno_al_diez)
+
+uno_al_diez_por_diez
+```
+
+```
+##  [1]  10  20  30  40  50  60  70  80  90 100
+```
+
+---
+
+### Vamos a crear una lista
+
+
+```r
+uno_al_diez_lista &lt;- list("numeros" = 1:10)
+
+uno_al_diez_lista 
+```
+
+```
+## $numeros
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+### ahora vamos a aplicar la función a la lista
+
+
+```r
+uno_al_diez_por_diez_lista &lt;- por_diez(uno_al_diez_lista)
+
+uno_al_diez_por_diez_lista
+```
+
+**Error in x * 10 : non-numeric argument to binary operator**
+
+---
+
+class: middle
+
+.center[#las funciones vectoriales no funcionan en las listas :(]
+
+---
+
+### función base de `purrr`: `map()`
+
+
+`map()` recibe como argumentos un vector, una lista o un data frame + una función y aplica dicha función a cada elemento devolviendo el resultado en una lista
+
+
+.center[![](05_figures/map.png)]
+  
+---
+
+
+### función base de `purrr`: `map()`
+
+.pull-left[
+
+- Vector: `map()` aplicará la funció a cada elemento del vector
+
+- Lista:  `map()` aplicará la función a cada elemento de la lista
+
+- dataframe: `map()` aplicará la función a cada columna del dataframe
+
+
+].pull-right[
+
+.center[![](05_figures/purrr.png)]
+  
+]
+
+.footnote[
+[1] [Introducción a la programación funcional con purrr](https://albertoalmuinha.com/es/posts/2021-03-11-purrr/purrr-es/)
+]
+
+
+---
+
+### Veamos unos ejemplos sencillos: `map()` + vector
+
+```r
+por_diez &lt;- function(x) x*10
+
+purrr::map(uno_al_diez, por_diez)
+```
+
+```
+## [[1]]
+## [1] 10
+## 
+## [[2]]
+## [1] 20
+## 
+## [[3]]
+## [1] 30
+## 
+## [[4]]
+## [1] 40
+## 
+## [[5]]
+## [1] 50
+## 
+## [[6]]
+## [1] 60
+## 
+## [[7]]
+## [1] 70
+## 
+## [[8]]
+## [1] 80
+## 
+## [[9]]
+## [1] 90
+## 
+## [[10]]
+## [1] 100
+```
+
+---
+
+### Veamos unos ejemplos sencillos: `map_dbl()` + vector
+
+```r
+purrr::map_dbl(uno_al_diez, por_diez)
+```
+
+```
+##  [1]  10  20  30  40  50  60  70  80  90 100
+```
+
+--- 
+
+### Veamos unos ejemplos sencillos: `map()` + lista
+
+
+```r
+por_diez &lt;- function(x) x*10
+
+purrr::map(uno_al_diez_lista, por_diez)
+```
+
+```
+## $numeros
+##  [1]  10  20  30  40  50  60  70  80  90 100
+```
+
+---
+
+### función base de `purrr`: `map2()`
+
+`map2()`toma como input una función y la aplica a cada par de elementos (dos vectores o  dos listas)
+
+
+```r
+dataset_a &lt;- c(3, 2 ,1)
+dataset_b &lt;- c(1, 2, 3)
+
+sumar_filas &lt;- function(x, y) {x+y}
+
+purrr::map2_dbl(dataset_a, dataset_b, sumar_filas)
+```
+
+```
+## [1] 4 4 4
+```
+---
+
+### Saludos estilo R base
+
+```r
+saludo_curso &lt;- function(nombre) {
+  paste("hola", nombre)
+}
+nombres_clase &lt;- c("Felipe",  "Pedro",  "Victo" , "Ximena",
+                    "Olivier",  "Valentina")
+for (estudiantes in nombres_clase) {
+  print(saludo_curso(estudiantes))
+}
+```
+
+```
+## [1] "hola Felipe"
+## [1] "hola Pedro"
+## [1] "hola Victo"
+## [1] "hola Ximena"
+## [1] "hola Olivier"
+## [1] "hola Valentina"
+```
+
+---
+
+### Saludos estilo purrr + `map()`
+
+```r
+saludar_curso &lt;- function(.nombres_clase) {message(paste('hola ', .nombres_clase))}
+nombres_clase &lt;- c("Felipe",  "Pedro",  "Victo" , "Ximena",
+                    "Olivier",  "Valentina")
+
+purrr::map(nombres_clase, saludar_curso)
+```
+
+```
+## hola  Felipe
+```
+
+```
+## hola  Pedro
+```
+
+```
+## hola  Victo
+```
+
+```
+## hola  Ximena
+```
+
+```
+## hola  Olivier
+```
+
+```
+## hola  Valentina
+```
+
+```
+## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+## NULL
+## 
+## [[5]]
+## NULL
+## 
+## [[6]]
+## NULL
+```
+---
+
+### Saludos estilo purrr + `walk()`
+
+```r
+saludar_curso &lt;- function(.nombres_clase) {message(paste('hola ', .nombres_clase))}
+nombres_clase &lt;- c("Felipe",  "Pedro",  "Victo" , "Ximena",
+                    "Olivier",  "Valentina")
+
+purrr::walk(nombres_clase, saludar_curso)
+```
+
+```
+## hola  Felipe
+```
+
+```
+## hola  Pedro
+```
+
+```
+## hola  Victo
+```
+
+```
+## hola  Ximena
+```
+
+```
+## hola  Olivier
+```
+
+```
+## hola  Valentina
+```
+---
+
+### Dataset de hoy: palmerpenguins
+
+data: `library(palmerpenguins)`
+
+* Contiene dos datasets: `penguins` y `penguins_raw`
+* Ambos datasets contienen datos de 344 pingüinos. Hay 3 especies diferentes de pingüinos, recogidos en 3 islas del archipiélago de Palmer, en la Antártida.
+
+.footnote[
+[1] [Palmerpenguins](https://github.com/allisonhorst/palmerpenguins)
+]
+
+---
+
+.center[![](05_figures/tres_especies.png)]
+
+---
+
+.center[![](05_figures/culmen_depth.png)]
+
+---
+
+class: center middle
+
+.center[##descansemos 10 minutos sin pantallas 💻 🚫]
+
+<div class="countdown" id="timer_62cf5193" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+
+class: center middle inverse
+.right[Abramos R studio e importemos los datos 💻 ]
+
+---
+
+### Objetivos clase hoy
+
+* Iteración, loops y funciones
+* Paquete `purrr`
+* Modelo linear simple
+
+---
+
+### Para terminar por hoy, algo divertido
+
+```r
+# install.packages("DataExplorer")
+# install.packages("palmerpenguins")
+
+library(DataExplorer)
+library(palmerpenguins)
+
+data(package = 'palmerpenguins')
+
+create_report(penguins)
+
+```
+---
+class: center, middle  
+
+## gracias por tu atención 🐸
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
