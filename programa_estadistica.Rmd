@@ -66,8 +66,8 @@ sociales), el curso se enfoca en:
 |                         |     medidas de tendencia central,   |      |
 |                         |     dispersión y posición (1/2)     |      |
 +-------------------------+-------------------------------------+------+
-| Estadísticas            | -   Conocer operadores y funciones  |      |
-| descriptivas básicas    |     de Tidyverse (2/2)              |      |
+| Estadísticas            | -   Conocer operadores y funciones  | T B  |
+| descriptivas básicas    |     de Tidyverse (2/2)              | A    |
 | (2/2)                   |                                     |      |
 |                         | -   Tipos de datos                  |      |
 |                         |                                     |      |
