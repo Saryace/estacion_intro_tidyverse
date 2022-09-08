@@ -48,65 +48,58 @@ sociales), el curso se enfoca en:
 
 ## Programación
 
-+----------------------------------+--------------------------------+---+
-| Sesión                           | Contenidos                     | F |
-|                                  |                                | e |
-|                                  |                                | c |
-|                                  |                                | h |
-|                                  |                                | a |
-+==================================+================================+===+
-| Estadísticas descriptivas        | -   Conocer operadores y       | T |
-| básicas (1/2)                    |     funciones de Tidyverse     | B |
-|                                  |     (1/2)                      | A |
-|                                  |                                |   |
-|                                  | -   Importar/exportar datos    |   |
-|                                  |     desde .xlsx y .csv         |   |
-|                                  |                                |   |
-|                                  | -   Familiarizarse con el IDE  |   |
-|                                  |     RStudio                    |   |
-|                                  |                                |   |
-|                                  | -   Número de observaciones,   |   |
-|                                  |     medidas de tendencia       |   |
-|                                  |     central, dispersión y      |   |
-|                                  |     posición (1/2)             |   |
-+----------------------------------+--------------------------------+---+
-| Estadísticas descriptivas        | -   Conocer operadores y       |   |
-| básicas (2/2)                    |     funciones de Tidyverse     |   |
-|                                  |     (2/2)                      |   |
-|                                  |                                |   |
-|                                  | -   Tipos de datos             |   |
-|                                  |                                |   |
-|                                  | -   Test estadísticos básicos  |   |
-|                                  |                                |   |
-|                                  | -   Número de observaciones,   |   |
-|                                  |     medidas de tendencia       |   |
-|                                  |     central, dispersión y      |   |
-|                                  |     posición (2/2)             |   |
-+----------------------------------+--------------------------------+---+
-| Pruebas de hipótesis en R        | -   Comparar un resultado      | T |
-|                                  |     entre dos grupos           | B |
-|                                  |                                | A |
-|                                  | -   Formato de datos           |   |
-|                                  |                                |   |
-|                                  | -   Introducción al paquete    |   |
-|                                  |     broom                      |   |
-+----------------------------------+--------------------------------+---+
-| Regresion y correlación lineal   | -   Repaso de modelos lineales | T |
-|                                  |     y no lineales              | B |
-|                                  |                                | A |
-|                                  | -   Uso de la función lm()     |   |
-|                                  |                                |   |
-|                                  | -   Uso del paquete broom para |   |
-|                                  |     interpretación             |   |
-+----------------------------------+--------------------------------+---+
-| Analysis of Variance (ANOVA)     | -   Repasar conceptos de ANOVA | T |
-|                                  |                                | B |
-|                                  | -   Uso de la función aov()    | A |
-|                                  |     para calcular ANOVA en R   |   |
-|                                  |                                |   |
-|                                  | -   Uso del paquete broom para |   |
-|                                  |     interpretación             |   |
-+----------------------------------+--------------------------------+---+
++-------------------------+-------------------------------------+------+
+| Sesión                  | Contenidos                          | F e  |
+|                         |                                     | c h  |
+|                         |                                     | a    |
++=========================+=====================================+======+
+| Estadísticas            | -   Conocer operadores y funciones  | T B  |
+| descriptivas básicas    |     de Tidyverse (1/2)              | A    |
+| (1/2)                   |                                     |      |
+|                         | -   Importar/exportar datos desde   |      |
+|                         |     .xlsx y .csv                    |      |
+|                         |                                     |      |
+|                         | -   Familiarizarse con el IDE       |      |
+|                         |     RStudio                         |      |
+|                         |                                     |      |
+|                         | -   Número de observaciones,        |      |
+|                         |     medidas de tendencia central,   |      |
+|                         |     dispersión y posición (1/2)     |      |
++-------------------------+-------------------------------------+------+
+| Estadísticas            | -   Conocer operadores y funciones  |      |
+| descriptivas básicas    |     de Tidyverse (2/2)              |      |
+| (2/2)                   |                                     |      |
+|                         | -   Tipos de datos                  |      |
+|                         |                                     |      |
+|                         | -   Test estadísticos básicos       |      |
+|                         |                                     |      |
+|                         | -   Número de observaciones,        |      |
+|                         |     medidas de tendencia central,   |      |
+|                         |     dispersión y posición (2/2)     |      |
++-------------------------+-------------------------------------+------+
+| Pruebas de hipótesis en | -   Comparar un resultado entre dos | T B  |
+| R                       |     grupos                          | A    |
+|                         |                                     |      |
+|                         | -   Formato de datos                |      |
+|                         |                                     |      |
+|                         | -   Introducción al paquete broom   |      |
++-------------------------+-------------------------------------+------+
+| Regresion y correlación | -   Repaso de modelos lineales y no | T B  |
+| lineal                  |     lineales                        | A    |
+|                         |                                     |      |
+|                         | -   Uso de la función lm()          |      |
+|                         |                                     |      |
+|                         | -   Uso del paquete broom para      |      |
+|                         |     interpretación                  |      |
++-------------------------+-------------------------------------+------+
+| Analysis of Variance    | -   Repasar conceptos de ANOVA      | T B  |
+| (ANOVA)                 |                                     | A    |
+|                         | -   Uso de la función aov() para    |      |
+|                         |     calcular ANOVA en R             |      |
+|                         |                                     |      |
+|                         | -   Uso del paquete broom para      |      |
+|                         |     interpretación                  |      |
++-------------------------+-------------------------------------+------+
 
 ## Responsable
 
