@@ -81,9 +81,11 @@ sociales), el curso se enfoca en:
 
 -   Manejar de forma general las herramientas más usadas en análisis
     exploratorio de datos 
--   Análisis descriptivo de datasets
--   Comunicar las hipótesis generadas por los datos por medio de
-    visualizaciones y reportes
+-   Análisis estadistico descriptivo de datasets
+-   Repasar pruebas de hipótesis y cómo aplicarlas a los datos
+-   Aprender y aplicar modelos de regresión lineal
+-   Aprender y aplicar el análisis de la varianza (ANOVA)
+-   Utilizar el paquete broom para manejar los outputs de modelos estadísticos
 
 ## Metodología
 
@@ -95,11 +97,11 @@ sociales), el curso se enfoca en:
 ## Programación
 | Sesión        | Contenidos         | Fecha   |
 | ------------- | ------------- | ----- |
-| Estadísticas descriptivas básicas (1/2) | <ul><li>Número de observaciones, medidas de tendencia central, dispersión y posición</li><li>Aprender buenas prácticas</li><li>Familiarizarse con el IDE RStudio</li><li>Conocer operadores y funciones (1/2)</li></ul> | TBA |
-| Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>Conocer operadores y funciones (2/2)</li><li>Tipos de datos</li><li>Importar/exportar datos desde .xlsx y .csv</li><li>Test estadísticos básicos</li></ul> | TBA |
-| Paquetes dplyr y tidyr para limpieza de datos | <ul><li>Funciones básicas</li><li>Formato de datos</li><li>Ejercicios data wrangling</li></ul> | TBA |
-| Paquete purrr para bucles| <ul><li>Operaciones en bucles</li><li>Iteraciones de funciones</li><li>Ejercicios loops</li></ul> | TBA |
-| Paquete ggplot2 para visualización de datos y Rmarkdown para reportes | <ul><li> Componentes ggplot2</li><li>geom básicos</li><li>Estilos y colores</li></ul>     | TBA |
+| Estadísticas descriptivas básicas (1/2) | <ul><li>Conocer operadores y funciones de Tidyverse</li><li>Importar/exportar datos desde .xlsx y .csv</li><li>Familiarizarse con el IDE RStudio</li><li>Número de observaciones, medidas de tendencia central, dispersión y posición (1/2)</li></ul> | TBA |
+| Estadísticas descriptivas básicas (2/2) | <ul><li></li><li>Entender los diferentes tipos de datos</li><li>Número de observaciones, medidas de tendencia central, dispersión y posición (2/2)</li><li>Gráficos y tablas</li></ul> | TBA |
+| Pruebas de hipótesis en R | <ul><li>Comparar un resultado entre dos grupos</li><li>Formato de datos</li><li>Introducción al paquete broom</li></ul> | TBA |
+| Regresion y correlación lineal| <ul><li>Repaso de modelos lineales y no lineales</li><li>Uso de la función ln()</li><li>Uso del paquete broom para interpretación</li></ul> | TBA |
+| Analysis of Variance (ANOVA) | <ul><li> Repasar conceptos de ANOVA</li><li>Uso de la función aov() para calcular ANOVA en R</li><li>Uso del paquete broom para interpretación</li></ul>     | TBA |
 
 
 ## Responsable
