@@ -71,8 +71,7 @@ Soil and Biogeochemistry UCDavis. Químico UC.
 
 ## Descripción del curso
 
-Este curso de 5 sesiones aborda conceptos de estadística usando el lenguaje de programación R y el megapaquete Tidyverse.
-Aprenderás a realizar estadística descriptiva de datos, ajuste e interpretación de modelos. 
+Este curso de 5 sesiones aborda conceptos de estadística usando el lenguaje de programación R, tidyverse para el analisis exploratorio de datos y broom para la interpretación y extracción de parametros estadistícos. Aprenderás a realizar estadística descriptiva de datos y ajuste e interpretación de modelos. 
 
 ## Objetivos del curso
 
@@ -98,9 +97,9 @@ sociales), el curso se enfoca en:
 | Sesión        | Contenidos         | Fecha   |
 | ------------- | ------------- | ----- |
 | Estadísticas descriptivas básicas (1/2) | <ul><li>Conocer operadores y funciones de Tidyverse</li><li>Importar/exportar datos desde .xlsx y .csv</li><li>Familiarizarse con el IDE RStudio</li><li>Número de observaciones, medidas de tendencia central, dispersión y posición (1/2)</li></ul> | TBA |
-| Estadísticas descriptivas básicas (2/2) | <ul><li></li><li>Entender los diferentes tipos de datos</li><li>Número de observaciones, medidas de tendencia central, dispersión y posición (2/2)</li><li>Gráficos y tablas</li></ul> | TBA |
+| Estadísticas descriptivas básicas (2/2) | <ul><li>Entender los diferentes tipos de datos</li><li>Número de observaciones, medidas de tendencia central, dispersión y posición (2/2)</li><li>Gráficos y tablas</li></ul> | TBA |
 | Pruebas de hipótesis en R | <ul><li>Comparar un resultado entre dos grupos</li><li>Formato de datos</li><li>Introducción al paquete broom</li></ul> | TBA |
-| Regresion y correlación lineal| <ul><li>Repaso de modelos lineales y no lineales</li><li>Uso de la función ln()</li><li>Uso del paquete broom para interpretación</li></ul> | TBA |
+| Regresion y correlación lineal| <ul><li>Repaso de modelos lineales y no lineales</li><li>Uso de la función lm()</li><li>Uso del paquete broom para interpretación</li></ul> | TBA |
 | Analysis of Variance (ANOVA) | <ul><li> Repasar conceptos de ANOVA</li><li>Uso de la función aov() para calcular ANOVA en R</li><li>Uso del paquete broom para interpretación</li></ul>     | TBA |
 
 
