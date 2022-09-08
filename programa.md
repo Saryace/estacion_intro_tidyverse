@@ -1,4 +1,4 @@
-# Estadística básica e introducción a {tidyverse}
+# Introducción a Tidyverse para Ciencia de Datos en R
 <img src="imagenes/EstLastarria_Horiz_Enviar-01.png" width="200"/>
 
 #### Sara Acevedo, 2022
@@ -36,8 +36,9 @@ sociales), el curso se enfoca en:
 | Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>Importancia de la reproducibilidad de los datos e información</li><li>Aprender buenas prácticas</li><li>Familiarizarse con el IDE RStudio</li><li>Conocer operadores y funciones (1/2)</li></ul> | TBA |
 | Comprender los elementos básicos del lenguaje de programación R (1/2) | <ul><li>Conocer operadores y funciones (2/2)</li><li>Tipos de datos</li><li>Importar/exportar datos desde .xlsx y .csv</li><li>Test estadísticos básicos</li></ul> | TBA |
 | Paquetes dplyr y tidyr para limpieza de datos | <ul><li>Funciones básicas</li><li>Formato de datos</li><li>Ejercicios data wrangling</li></ul> | TBA |
-| Paquete ggplot2 para visualización de datos | <ul><li> Componentes ggplot2</li><li>geom básicos</li><li>Estilos y colores</li></ul>     | TBA |
 | Paquete purrr para bucles| <ul><li>Operaciones en bucles</li><li>Iteraciones de funciones</li><li>Ejercicios loops</li></ul> | TBA |
+| Paquete ggplot2 para visualización de datos y Rmarkdown para reportes | <ul><li>Componentes ggplot2 (geoms básicos)</li><li>gReportes en word y pdf desde Rmd</li><li>Estilos y colores</li></ul>     | TBA |
+
 
 ## Responsable
 

@@ -32,6 +32,8 @@ Usando dataframes de distintos tipos (data de ecología y ciencias sociales), el
 -   Ejercicios a resolver en RMarkdown
 -   Clases de 2 horas de duración
 
+\newpage
+
 ## Programación
 
 +-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
@@ -59,17 +61,17 @@ Usando dataframes de distintos tipos (data de ecología y ciencias sociales), el
 |                                                                       |                                                                   |       |
 |                                                                       | -   Ejercicios data wrangling                                     |       |
 +-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
-| Paquete ggplot2 para visualización de datos                           | -   Componentes ggplot2                                           | TBA   |
-|                                                                       |                                                                   |       |
-|                                                                       | -   geom básicos                                                  |       |
-|                                                                       |                                                                   |       |
-|                                                                       | -   Estilos y colores                                             |       |
-+-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
 | Paquete purrr para bucles                                             | -   Operaciones en bucles                                         | TBA   |
 |                                                                       |                                                                   |       |
 |                                                                       | -   Iteraciones de funciones                                      |       |
 |                                                                       |                                                                   |       |
 |                                                                       | -   Ejercicios loops                                              |       |
++-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
+| Paquete ggplot2 para visualización de datos y Rmarkdown para reportes | -   Componentes ggplot2 (geoms básicos)                           | TBA   |
+|                                                                       |                                                                   |       |
+|                                                                       | -   Reportes en word y pdf desde Rmd                              |       |
+|                                                                       |                                                                   |       |
+|                                                                       | -   Estilos y colores                                             |       |
 +-----------------------------------------------------------------------+-------------------------------------------------------------------+-------+
 
 ## Responsable
